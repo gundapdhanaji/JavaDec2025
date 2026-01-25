@@ -1,0 +1,14 @@
+OOPS concepts
+1) Inheritance
+2) Polymorphism
+3) Encapsulation
+4) Abstraction
+5) Classes and Objects
+6) Constructors and Destructors
+7) Method Overloading and Overriding
+8) Access Modifiers
+9) Interfaces and Abstract Classes
+10) Composition vs Inheritance
+11) SOLID Principles
+12) Design Patterns
+13) Exception Handling in OOPS
