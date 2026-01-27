@@ -1,0 +1,25 @@
+Loose Coupling In a java ?
+   Loose coupling in java is a software design principle where classes and components have minimal dependencies on each other.
+   Components interact through stable, well-defined interfaces or abstractions, rather than concrete implementation,
+   promoting flexibility, easier maintenance and scalability.
+
+High Cohesiveness in a Java ?
+    In java, high cohesion means that a class, module, or method has a single, well defined and focused purpose,
+    and all of its internal elements(methods, attributes) are closely related to that specific purpose.
+    Its a measure of the functional strength and utility within a component.
+God class in java ?
+    A god class (or god object) in java is a design anti-pattern where a single class takes on excessive responsibilities
+    and controls too many other objects in the system, violating core object-oriented principles like
+    Single Response Responsibility Principle(SRP)
+    It is essentially a "code smell" indicating poor design and a future maintenance nightmare
+
+    loose coupling -- one class should have minimum depend on other clas
+    high cohesiveness -- each class have specific role and task to perform
+
+    composition  => too much dependent
+    aggregation  => classes can live idependently
+
+    University => Department composition
+    University => Teachers aggregation
+
+2 classes with default scope in 2 different packages containing only public methods

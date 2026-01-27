@@ -1,0 +1,17 @@
+
+relationship between interface and class
+1) one class extends one class
+2) one class implements multiple interfaces
+3) one interface implements multiple interfaces
+4) If one abstract class implements 1 or more interfaces,
+    then it's not mandatory for that abstract child class to provide method implementation of
+    abstract methods of interfaces.
+5) If one non-abstract class implements 1 or more interfaces,
+    then it's mandatory for that non-abstract child class to provide method implementation of
+    abstract methods of interfaces
+
+
+1) Interface variables are by default public static final no need to define explicitly
+3) before java 8 interface are used for achieving 100% abstraction
+2) Interface methods are by default public abstract
+4) interface keyword used for defining interface

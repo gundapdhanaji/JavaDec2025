@@ -1,0 +1,69 @@
+class
+Object
+interface
+variables
+methods
+data types
+packages
+keyword
+access modifiers
+operators
+constructors
+compiler
+
+package
+    ==> It contains classes with similar functionality
+    In Java, a package is a mechanism for grouping related classes, interfaces, and sub-packages into a structured namespace
+Key Purposes and Benefits
+    Avoids Naming Conflicts: Packages allow multiple classes to have the same name as long as they are in different packages
+                            (e.g., com.company.sales.Employee and com.company.marketing.Employee).
+    Access Control: Packages provide a level of access control using modifiers like public, protected, and default (package-private),
+                    which restrict visibility of classes and members to other parts of the program.
+    Code Organization and Maintainability: They help in logically organizing hundreds or thousands of classes into functional units,
+                                            making it easier to navigate, update, and manage the codebase.
+    Code Reusability: Classes within a package can be easily reused across different projects or by other developers by
+                      simply importing the package or class.
+    Encapsulation: Packages enhance encapsulation by allowing developers to hide internal implementation details
+                   and expose only necessary functionalities.
+
+Types of Packages
+Java has two main types of packages:
+Built-in Packages: These are predefined packages that come with the Java Development Kit (JDK) as part of the Java API.
+Examples include:
+java.lang: Contains fundamental classes like String, Math, and Object. This package is automatically imported into every Java program.
+java.util: Provides utility classes, such as ArrayList, HashMap, and Scanner, for data structures and time operations.
+java.io: Includes classes for input and output operations, such as FileReader and BufferedReader
+java.net: Contains classes essential for networking applications, like Socket and URL.
+User-defined Packages: Developers can create their own custom packages to organize project-specific classes and interfaces.
+                        This is done using the package keyword at the beginning of the Java source file.
+
+
+
+keywords
+    ==> Keywords in Java are predefined, reserved words that have a special meaning to the Java compiler. These words form the
+    core of the Java language's syntax and cannot be used by programmers as identifiers
+    (names for variables, methods, classes, or any other program elements).
+
+2. Control Flow Keywords
+    if
+        Executes code when a condition is true.
+    else
+        Defines an alternate block when an if condition is false.
+    switch
+        Selects one block of code among multiple options
+    case
+        Defines an individual branch in a switch statement
+    default
+        Defines the block executed if no case matches
+    for
+         used to start a for loop.
+    break
+        used to exit a loop or switch statement
+# Sequence
+Object Class Methods
+String
+Exception Handling
+MultiThreading
+Collection
+Java 8
+
