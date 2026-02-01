@@ -1,0 +1,12 @@
+this()
+    this keyword or method used to refer current class constructor
+    using this() method we called different constructor of same class we can achieve constructor chaining
+    in the same class by passing different parameter in this method for available constructors
+
+super()
+    super() keyword or method used to refer parent class constructor
+    by default jvm called super() method implicitly in the child class which is taking default constructor
+    of parent class we do not  need to call explicitly
+    using super() method we called different constructor of parent class by passing different parameters in super method
+
+    If we extend parent class in a child class and
