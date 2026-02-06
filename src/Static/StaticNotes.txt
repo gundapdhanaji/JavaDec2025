@@ -1,0 +1,5 @@
+
+
+whatever static it belongs to the class not to a specific object of a class
+
+All objects of 

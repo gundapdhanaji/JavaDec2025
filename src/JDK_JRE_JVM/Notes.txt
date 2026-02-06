@@ -1,0 +1,77 @@
+Q1. why we have separate jdk for each os version ?
+While Java is famously "write once, run anywhere," the Java Development Kit (JDK) must be platform-specific because
+it acts as the bridge between your universal code and the unique hardware/software of your Operating System (OS).
+We have separate JDKs for each OS because:
+JVM is Platform-Dependent: The Java Virtual Machine (JVM), which is part of the JDK, is the engine that actually
+executes your code. Since every OS (Windows, macOS, Linux) handles memory, threads, and file systems differently,
+the JVM must be custom-built for each OS to translate universal Java bytecode into specific machine-level instructions.
+Native Tooling: The JDK includes tools like the compiler (javac) and debugger (jdb) which are native executable files.
+Just as a .exe file won't run natively on Linux, the JDK's internal binary tools must be compiled specifically for
+the OS they inhabit.
+OS-Specific Libraries: While Java provides a standard API, some operations (like graphical windowing or networking)
+ require calling "native" code. The JDK includes these native libraries (e.g., .dll on Windows, .so on Linux)
+to allow Java to communicate with the OS kernel.
+Hardware Architecture: Beyond just the OS, JDKs are also separated by CPU architecture (like x64 vs. ARM/AArch64).
+A JDK built for an Intel processor cannot run on an Apple M-series chip because the underlying machine instructions
+are fundamentally different.
+In short: Java code is platform-independent, but the JDK (the environment that runs it) must be platform-dependent
+to handle the "dirty work" of talking to specific hardware.
+
+.java file => .class file
+Native calls => OS calls
+
+Native calls refer to the execution of code written in languages like C or C++ from a higher-level language,
+most commonly Java (via JNI - Java Native Interface) or React Native. This allows application code to access
+platform-specific functionality,hardware, or legacy libraries, enhancing performance or extending capabilities
+beyond the virtual machine's standard API.
+Key details about native calls:
+Purpose: Primarily used for performance optimization, accessing low-level system resources (memory/hardware),
+or reusing existing C/C++ libraries.
+Mechanism (Java): A method is declared with the native keyword in Java without a body, and its implementation is
+provided in a shared library (.dll, .so, or .dylib).
+JNI (Java Native Interface): This is the standard framework that allows Java code running in a JVM to call and
+be called by native applications and libraries.
+Process: The Java program loads a native library using System.loadLibrary(), calls the native method,
+and the JVM handles the bridge to the C/C++ function.
+Considerations: While enabling advanced capabilities, using native calls increases application complexity,
+introduces risks of memory corruption, and does not always guarantee significant performance gains.
+
+
+How Do Java Native Calls Work?
+Let’s look at an example. The method Files.delete in the java.nio.file package is used to delete a file or a directory.
+If you look at the implementation, you will see that the method delegates the call to an instance of FileSystemProvider.
+There are specializations of this class for different file systems and operating systems. On a Windows system,
+WindowsFileSystemProvider.delete gets called, which eventually calls WindowsNativeDispatcher.DeleteFile0.
+Now, look at the declaration of this method:
+
+private static native void DeleteFile0(long lpFileName) throws WindowsException;
+The keyword native indicates that the method has a native implementation. As you can see, there is no method body that
+contains the implementation. Instead, a platform-specific library contains the implementation of this method.
+For every platform on which a Java application is supposed to run, there needs to be platform-specific code that gets
+called when using Files.delete. This code is responsible for the actual call into the operating system.
+
+If you have a look at your JAVA_HOME\bin directory, you will find a file called nio.dll. It contains the
+platform-specific code for the Java NIO functionalities. Using a tool like DLL Export Viewer, you can see that
+the DLL contains the function Java_sun_nio_fs_WindowsNativeDispatcher_DeleteFile0.
+
+Why JRE removed in Java 11
+The Java Runtime Environment (JRE) was not completely "removed" in Java 11, but rather, Oracle stopped offering it as
+a separate public download. This strategic shift was driven by the introduction of the Java Platform Module System
+(JPMS) in JDK 9 and a change in how Java applications are expected to be deployed.
+Key Reasons for the Change
+Shift in Deployment Model: The new model expects developers to bundle a custom, application-specific runtime
+environment with their application using the jlink tool. This results in a smaller, optimized, self-contained
+application that does not rely on a pre-installed system JRE.
+Modularity: The introduction of JPMS (Project Jigsaw) allowed the Java platform to be broken down into modules.
+The jlink tool can analyze an application's dependencies and create a minimal runtime that only includes the
+necessary modules, significantly reducing the size compared to the old, monolithic JRE.
+Security and Updates: In the past, end-users were responsible for updating a system-wide JRE to ensure security patches
+were applied, which was often not done consistently. In the new model, the application vendor is responsible for
+providing updates that include the latest security fixes within their bundled runtime,
+improving the overall security posture.
+Removal of Browser Plugins: Java Applets and Java Web Start technologies, which relied on a standalone JRE and browser
+plugins, were deprecated in Java 9 and removed in Java 11. This eliminated a major use case for a separate JRE
+installation on end-user machines.
+Eliminating Duplication: Historically, installing the JDK would install two identical JREs: one inside the JDK
+directory and one public system JRE. This was a waste of disk space and maintenance effort.
+By providing only the JDK, this redundancy was resolved.

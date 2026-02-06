@@ -1,0 +1,37 @@
+Narrowing and Widening in java ?
+
+
+2) Non-Primitive
+    A) In-Built
+    B) User Defined
+
+    can we convert variable of 1 type into another ?
+
+Narrowing => not natural you need to explicitly casting
+
+Widening => it is natural, you don't need do any casting
+
+
+widening is the automatic conversion of a smaller type to a larger type.
+while narrowing is the manual conversion of a larger type to a smaller type,
+which carries a risk of data loss
+
+What is Type Casting?
+Type casting is the process of converting a variable from one data type to another. This happens when you assign a value
+of one data type to another type. Java supports two types of type casting: implicit (widening) casting and explicit (narrowing) casting.
+
+Implicit Casting (Widening — automatically): This type of casting occurs automatically when a smaller data type is promoted
+to a larger data type. Java handles this conversion seamlessly, ensuring no loss of data. For example,
+converting an int to a double is an implicit casting operation.
+Explicit Casting (Narrowing — manually): Explicit casting, on the other hand, involves manually converting a larger data type to
+a smaller data type. This process requires the use of parentheses and is done explicitly by the programmer.
+For instance, casting a double to an int requires explicit casting.
+int x = 10;
+double y = x; // widening casting: int to double
+
+double a = 10.5;
+int b = (int) a; // narrowing casting: double to int
+Casting is required when you need to store a larger type value into a smaller type variable, or vice versa.
+
+
+
