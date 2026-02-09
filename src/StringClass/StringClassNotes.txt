@@ -1,0 +1,90 @@
+Q1) What is String in Java ?
+    ===> In Java, a String is an object that represents an immutable sequence of characters
+
+   # Core Reasons to Use the String Class
+    1.Representation of Textual Data
+        The primary function is to handle human-readable text, such as names, addresses, messages, configuration values,
+         and data exchange formats like JSON/XML
+    2.Immutability: Once a String object is created, its value cannot be changed.
+        This provides several critical benefits:
+            Thread Safety: Immutable objects are automatically thread-safe, making them ideal for use in multi-threaded
+                           environments without the need for explicit synchronization.
+            Security: Strings are widely used for sensitive information like passwords, file paths, and network connections.
+                      Their immutability ensures this data cannot be accidentally or maliciously altered after creation.
+            String Constant Pool Optimization: The Java Virtual Machine (JVM) stores string literals in a special memory area called the String Constant Pool (SCP).
+                       Immutability allows the JVM to reuse existing string objects with the same content, which saves memory and improves performance.
+            Reliable HashCodes: Because strings are immutable, their hash code can be cached the first time it is calculated, which improves performance
+                       when they are used as keys in hash-based collections like HashMap and HashSet
+            Practical Utility and Functionality
+            Rich API: The String class provides over 60 built-in methods for common operations,
+                      which saves developer time and effort compared to implementing them manually.
+
+                length(): Returns the number of characters.
+                charAt(): Accesses individual characters by index.
+                substring(): Extracts a portion of a string.
+                equals() and equalsIgnoreCase(): Compares string content for equality.
+                concat(): Joins strings together (also supported by the + operator).
+                split(): Divides a string into an array of substrings based on a delimiter.
+                trim(): Removes leading and trailing whitespace.
+
+Q2) Why should we use String class ?
+    ===>
+
+Q3) Why string class is most commonly used class in java ?
+
+Q4) Mutable vs Immutable
+    //In case of Mutable Object, when we modify the state of an object, we are modifying the same object and not creating any new Object
+
+    //In case of Immutable object, when we modify the state of an object, we can not modify the object once it is created and
+    //even when we try to modify the object it will create a new object and original object remain as it is
+
+Rules for creating custom immutable class in java
+    To create a custom immutable class in Java, you must ensure that its state cannot be changed after the object is created
+
+Core Rules for Immutability
+    Declare the class as final: This prevents other classes from extending it (inheritance),
+                        which could otherwise lead to overriding methods and potentially compromising immutability.
+    Make all fields private and final:
+        private: Restricts direct access to the fields from outside the class, enforcing encapsulation.
+        final: Ensures that the value or reference of the field can be assigned only once,
+                typically in the constructor, and never changed afterward.
+
+    Do not provide any setter methods: Since the object's state must remain constant,
+                   there should be no methods available to modify the fields after initialization.
+
+    Initialize all fields via a constructor: All fields must be set during the object's creation.
+                                        A parameterized constructor is typically used for this purpose.
+    Handle mutable fields with defensive copying: If your class contains fields that are references to mutable objects (like Date, ArrayList, or other custom mutable classes),
+                                                    special care is needed:
+            In the constructor: Instead of simply assigning the incoming mutable object reference to the internal field,
+                                you must create a deep copy of the object and store a reference to the copy.
+                                This prevents the external code that passed the original object from modifying the internal state of your immutable object.
+            In the getter methods: The getter method for a mutable field must return a deep copy (or clone) of the internal object, not the direct reference.
+                                    This prevents external code from obtaining a reference to the internal state and modifying it
+    # Memory Management Changes after java 8, java 11, java 17, java 21
+1) Java clone method
+        To use the clone() method in Java, a class must implement the Cloneable marker interface and override the protected clone() method
+         from the Object class, changing its visibility to public
+
+Shallow Cloning
+    The default implementation of Object.clone() performs a shallow copy, which is suitable for classes containing only
+    primitive data types and immutable objects (like String)
+
+Deep Cloning
+    If a class contains mutable object fields, the shallow copy will result in both the original and the
+    cloned object sharing references to the same mutable internal objects. To ensure complete independence
+    (a deep copy), you must manually clone the mutable fields within the overridden clone() method.
+
+## custom immutable class in java
+To create a custom immutable class in Java, you must ensure that its state cannot be modified after it is created.
+This is achieved by following a set of strict rules.
+Rules for Creating a Custom Immutable Class
+Declare the class as final: This prevents other classes from extending it and potentially introducing mutable behavior through subclassing.
+Make all fields private and final: The private keyword prevents direct external access to the fields,
+    while final ensures that the fields are initialized only once via the constructor and cannot be reassigned later.
+Do not provide setter methods: The absence of setter methods (mutators) means there is no way to change the object's state after construction.
+Initialize all fields via a constructor: The constructor is the only place where the final fields can be assigned their initial values.
+Handle mutable fields carefully: If your class has fields that are mutable objects (like java.util.Date, ArrayList, or a custom mutable class):
+In the constructor: Perform a deep copy of the incoming mutable objects and store the reference to the copy, not the original external object.
+In the getter methods: Return a deep copy or a read-only view of the internal mutable object, never the direct reference to the internal instance.
+ This prevents the client code from modifying your object's internal state.

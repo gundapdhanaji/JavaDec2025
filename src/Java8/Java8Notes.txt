@@ -1,0 +1,7 @@
+Java 8 Features
+1)Functional Interface or Single Abstract Method Interface
+2)Lambda Expression
+3)Stream API's
+4)Method Reference
+5)Optional Class
+6)Date API's

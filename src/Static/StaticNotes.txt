@@ -1,5 +1,13 @@
+what is static ?
+--> static is a keyword
 
+whatever static it belongs to whole class i.e all Objects
+of that class will get same value for static variable
 
-whatever static it belongs to the class not to a specific object of a class
+for instance variable, each instance or object will get a separate copy
+of that variable
 
-All objects of 
+why we need static in java ?
+
+No need to create an object of the class to access static members/variables
+using class name we can access members/variables

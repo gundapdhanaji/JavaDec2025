@@ -1,0 +1,163 @@
+What is the Need of Inheritance in Java?
+Inheritance can be defined as a mechanism by which one object can acquire all the properties
+(i.e. data members) and behavior (i.e. member functions or methods) of a parent object.
+The basic idea of Inheritance is to create the new class (called child class or derived or subclass)
+from an existing class (called parent class or Base or Superclass). That is, the child class inherits
+the properties (methods and fields) of the parent class.
+A subclass can reuse the fields and methods of the parent class without rewriting the code
+A subclass can add its own fields and methods or modify existing ones to extend functionality.
+Example: In the following example, Animal is the base class and Dog, Cat, and Cow are derived
+classes that extend the Animal class.
+// Parent class
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Child class
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Child class
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+// Child class
+class Cow extends Animal {
+    void sound() {
+        System.out.println("Cow moos");
+    }
+}
+
+// Main class
+public class Geeks {
+    public static void main(String[] args) {
+        Animal a;
+        a = new Dog();
+        a.sound();
+
+        a = new Cat();
+        a.sound();
+
+        a = new Cow();
+        a.sound();
+    }
+}
+
+Syntax
+class Parent {
+
+    // fields and methods
+
+}
+class Child extends Parent {
+
+    // additional fields and methods
+
+}
+Note: In Java, inheritance is implemented using the extends keyword.
+Key Terminologies in Java Inheritance
+Term	    Description
+Class	    Blueprint from which objects are created
+Superclass	Class whose properties are inherited
+Subclass	Class that inherits another class
+extends	    Keyword used to inherit a class
+
+1. Single Inheritance
+In single inheritance, a sub-class is derived from only one super class. It inherits the properties
+and behavior of a single-parent class. Sometimes, it is also known as simple inheritance.
+//Super class
+class Vehicle {
+    Vehicle() {
+        System.out.println("This is a Vehicle");
+    }
+}
+
+// Subclass
+class Car extends Vehicle {
+    Car() {
+        System.out.println("This Vehicle is Car");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        // Creating object of subclass invokes base class constructor
+        Car obj = new Car();
+    }
+}
+
+2. Multilevel Inheritance
+In Multilevel Inheritance, a derived class will be inheriting a base class and
+as well as the derived class also acts as the base class for other classes.
+
+class Vehicle {
+    Vehicle() {
+        System.out.println("This is a Vehicle");
+    }
+}
+class FourWheeler extends Vehicle {
+    FourWheeler() {
+        System.out.println("4 Wheeler Vehicles");
+    }
+}
+class Car extends FourWheeler {
+    Car() {
+        System.out.println("This 4 Wheeler Vehicle is a Car");
+    }
+}
+public class Geeks {
+    public static void main(String[] args) {
+        Car obj = new Car(); // Triggers all constructors in order
+    }
+}
+This is a Vehicle
+4 Wheeler Vehicles
+This 4 Wheeler Vehicle is a Car
+
+3. Hierarchical Inheritance
+In hierarchical inheritance, more than one subclass is inherited from a single base class. i.e.
+more than one derived class is created from a single base class. For example, cars and buses both are vehicle
+class Vehicle {
+    Vehicle() {
+        System.out.println("This is a Vehicle");
+    }
+}
+
+class Car extends Vehicle {
+    Car() {
+        System.out.println("This Vehicle is Car");
+    }
+}
+
+class Bus extends Vehicle {
+    Bus() {
+        System.out.println("This Vehicle is Bus");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Car obj1 = new Car();
+        Bus obj2 = new Bus();
+    }
+}
+Output
+This is a Vehicle
+This Vehicle is Car
+This is a Vehicle
+This Vehicle is Bus
+
+4. Multiple Inheritance (Through Interfaces)
+In Multiple inheritances, one class can have more than one superclass and inherit features
+from all parent classes.
+Note: that Java does not support multiple inheritances with classes. In Java, we can achieve
+multiple inheritances only through Interfaces.
+

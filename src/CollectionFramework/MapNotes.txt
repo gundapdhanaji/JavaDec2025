@@ -1,0 +1,32 @@
+
+Map interface
+    => HashMap
+    => LinkedHashMap
+    => TreeMap
+
+
+    map interface methods ?
+    put();
+    remove();
+
+    If two objects are equal according to the equals method, they must have the same hashcode
+    If two objects have the same hash code, they might be  equal according to equals method,
+
+    what is hashing technique ?
+    ==> HashMap internally working on hashing technique
+    when we apply hashCode() method on object, it gives us some unique int value, this is called hashing.
+
+
+    Map does not allow duplicate keys but we can insert multiple duplicate values
+    Map allows single null key but we can insert multiple null values
+    Map does not maintain insertion order
+    If we insert duplicate keys in Map, It will replace older value with New Value
+
+    I have different keys but both are returning same hashCode value
+
+    hashcode and memory address are they same or different ?
+   => both are different
+        hashcode is the unique identifier for each object it is not for your memory address
+
+    Why java map gives bucket index 0 when we add null key ?
+    ==> when we add null key by default it takes 0 index because of we

@@ -1,0 +1,171 @@
+//links
+https://www.tutorialspoint.com/java/java_custom_exception.htm
+
+Q.1 WHAT IS EXCEPTION  IN JAVA ?
+====>
+     An exception is an unexpected event or error that occurs during a program's execution, disrupting its normal flow.
+     It represents a "special case" or error condition—such as dividing by zero or accessing missing files—that breaks
+     the standard rules of execution, which can be caught and handled to prevent crashes
+
+Q2. Why we get Exception in java ?
+====>
+    🔴 Reasons for Exception in Java
+    1️⃣ Invalid User Input
+
+    When the user provides incorrect or unexpected input.
+    Example:
+    int a = Integer.parseInt("abc"); // NumberFormatException
+
+    2️⃣ Division by Zero
+    Dividing a number by zero.
+    Example:
+    int a = 10 / 0; // ArithmeticException
+
+    3️⃣ Accessing Invalid Array Index
+    Trying to access an index outside the array size.
+    Example:
+    int[] arr = {1, 2, 3};
+    System.out.println(arr[5]); // ArrayIndexOutOfBoundsException
+
+    4️⃣ Using a Null Reference
+    Calling a method or accessing a variable on a null object.
+    Example:
+    String s = null;
+    System.out.println(s.length()); // NullPointerException
+
+    5️⃣ File or Resource Not Found
+    Trying to access a file that does not exist.
+    Example:
+    FileInputStream fis = new FileInputStream("data.txt");
+    // FileNotFoundException
+
+    6️⃣ Type Casting Error
+    Casting an object to an incompatible type.
+    Example:
+    Object obj = "Java";
+    Integer i = (Integer) obj; // ClassCastException
+
+    7️⃣ Database or Network Issues
+    Problems while connecting to a database or network.
+    Examples:
+    SQLException, IOException
+
+    8️⃣ Memory Issues
+    When JVM runs out of memory.
+    Example:
+    OutOfMemoryError
+
+    9️⃣ Infinite Recursion
+    Too many recursive method calls.
+    Example:
+    StackOverflowError
+
+    🔟 Programming / Logical Errors
+    Wrong conditions
+    Infinite loops
+
+    Not closing resources properly
+
+    📌 Types of Exceptions
+    Type	    Description 	            Examples
+    Checked     Exception	                Checked at compile time	IOException, SQLException
+    Unchecked   Exception	                Occur at runtime	NullPointerException, ArithmeticException
+    Error	    Serious system problems	    OutOfMemoryError
+
+    Q.Exception vs Throwable
+
+    In Java, both Error and Exception are subclasses of the Throwable class, but they represent different types of problems
+     and are handled differently.
+    Exceptions are generally recoverable problems that occur due to issues in the application code,
+            such as invalid user input or network failures, and should be handled programmatically.
+    Errors are serious, unrecoverable problems that occur outside the control of the application, usually within the
+            Java Virtual Machine (JVM) or the system environment, and most applications should not try to catch them.
+
+    Key Differences: Error vs. Exception
+    Aspect 	            Error (java.lang.Error)	                     Exception (java.lang.Exception)
+    --------------------------------------------------------------------------------------------------------------------------
+    Nature	            Serious, system-level issues                 Application-level issues (e.g., bad input, file not found,
+                        (e.g., resource depletion, JVM crash).	     programming logic errors).
+    --------------------------------------------------------------------------------------------------------------------------
+    Recoverability	    Generally not recoverable; typically         Recoverable; can be caught and handled using try-catch
+                        leads to abnormal program termination.	     blocks to allow the program to continue running.
+    --------------------------------------------------------------------------------------------------------------------------
+    Handling	        Not meant to be caught or                    Designed to be caught and handled to prevent program crashes.
+                        handled by application code.
+    ---------------------------------------------------------------------------------------------------------------------------
+    Type	            Always unchecked (not checked at             Can be checked (compile-time, must be handled)
+                        compile time).                                or unchecked (runtime, optional handling).
+    -----------------------------------------------------------------------------------------------------------------------------
+    Examples	        OutOfMemoryError, StackOverflowError,         IOException, SQLException, NullPointerException,
+                        VirtualMachineError.                                                ArrayIndexOutOfBoundsException
+    ----------------------------------------------------------------------------------------------------------------------------
+
+Difference Between Error and Exception in Java
+    Error	                                                        Exception
+    An error cannot be handled at runtime.	                        An exception can be handled at runtime
+    An error can occur both at compile time                         Although all the Exceptions occur at runtime.
+    and during runtime.                                             But checked Exceptions can be detected at compile time.
+    There are 3 types of Errors: Syntax Error,                      There are 2 types of Exceptions: Checked Exceptions and Unchecked Exceptions
+     Runtime Error and Logical Error
+    An error has the capacity to terminate your program             An exception has the capacity to distract the normal flow of the program
+    and maybe your system as well.                                  and change its direction to somewhere else when an exceptional case has occurred.
+
+    An Error is such an event that no one can control               An Exception can be guessed, handled, and utilized in order
+    or guess when it is going to happen.	                        to change the original flow of the program.
+
+    An Error can be thought of as an explosion that happens         An Exception can be thought of as a last line of defense to prevent errors.
+    when there is no defense or checks against a particular
+     failure condition.
+
+    Key Distinctions
+    Error indicates a problem that is outside the scope of the application code's control, such as running out of memory
+        or a fundamental issue with the Java Virtual Machine (JVM). Trying to catch and handle these generally does not
+        make sense because the program is in an unstable state and should usually be allowed to terminate.
+    Exception is intended for conditions that a reasonable application might want to anticipate and handle programmatically.
+        For example, if a program tries to open a file that doesn't exist, a FileNotFoundException is thrown,
+        which the programmer can catch and manage gracefully (e.g., by prompting the user for a new file path).
+    =========================================================================================================================
+    Checked vs. Unchecked Exceptions: All errors are unchecked. Exceptions, however, are further divided:
+    Checked exceptions (e.g., IOException) must be handled explicitly in the code (using try-catch or a throws clause) for
+        the program to compile.
+    Unchecked exceptions (e.g., RuntimeException subclasses like NullPointerException or ArrayIndexOutOfBoundsException) are
+        typically the result of programming errors and do not need to be explicitly handled by the compiler,
+         although they can be caught.
+
+****************************************************************************************************************************************
+    Array   => Collection framework
+    Thread  => Executor framework
+
+   File  => Apache POI, Itext
+   Q1. what is apache poi ?
+     Apache POI (Poor Obfuscation Implementation) is an open-source Java library used to create, read, modify,
+     and manipulate Microsoft Office documents—including Excel (.xls, .xlsx), Word (.doc, .docx), and PowerPoint
+      (.ppt, .pptx)—programmatically without requiring Microsoft Office installed. It is widely used in
+      Selenium automation for data-driven testing and handling file conversions,
+      supporting both User Model (DOM-style) and Event Model (low-memory) APIs.
+
+   Q2. What is Itext ?
+        iText is a widely used software development kit (SDK) and library for creating, manipulating,
+        and editing PDF documents in Java and .NET (C#) applications. It allows developers to automate the generation
+        of high-volume, data-driven documents such as invoices, statements, and boarding passes
+
+   Q3. Compile time or Checked exception
+   ==> when compiler forces developer to handle the exceptions at compile time (without handling those exceptions your
+        code will not compile ) so those exceptions are called Compile time or checked exception
+
+   Q4. What should go in try block => the code which might cause an exception should go in try block;
+       What should go in catch block =>
+
+   finally block ==> whether exception occurs or not, code in finally block will always gets executed
+
+
+   Q.5 what is exception propagation in java
+        Exception propagation in Java is the mechanism by which an exception is passed up the method call stack from
+        the method where it occurred to its calling methods, until it is caught and handled by an appropriate try-catch block
+        or reaches the top of the stack and terminates the program.
+
+
+
+
+
+

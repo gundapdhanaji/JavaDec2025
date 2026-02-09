@@ -1,16 +1,18 @@
 Loose Coupling In a java ?
-   Loose coupling in java is a software design principle where classes and components have minimal dependencies on each other.
-   Components interact through stable, well-defined interfaces or abstractions, rather than concrete implementation,
-   promoting flexibility, easier maintenance and scalability.
+   Loose coupling in java is a software design principle where classes and components
+   have minimal dependencies on each other.
+   Components interact through stable, well-defined interfaces or abstractions, rather than
+   concrete implementation,promoting flexibility, easier maintenance and scalability.
 
 High Cohesiveness in a Java ?
-    In java, high cohesion means that a class, module, or method has a single, well defined and focused purpose,
-    and all of its internal elements(methods, attributes) are closely related to that specific purpose.
+    In java, high cohesion means that a class, module, or method has a single, well defined
+     and focused purpose,and all of its internal elements(methods, attributes) are closely
+     related to that specific purpose.
     Its a measure of the functional strength and utility within a component.
 God class in java ?
-    A god class (or god object) in java is a design anti-pattern where a single class takes on excessive responsibilities
-    and controls too many other objects in the system, violating core object-oriented principles like
-    Single Response Responsibility Principle(SRP)
+    A god class (or god object) in java is a design anti-pattern where a single class takes
+    on excessive responsibilities and controls too many other objects in the system, violating
+    core object-oriented principles like Single Response Responsibility Principle(SRP)
     It is essentially a "code smell" indicating poor design and a future maintenance nightmare
 
     loose coupling -- one class should have minimum depend on other clas
@@ -23,3 +25,239 @@ God class in java ?
     University => Teachers aggregation
 
 2 classes with default scope in 2 different packages containing only public methods
+
+Access Modifiers in Java
+Private Access Modifier
+The private access modifier is specified using the keyword private. The methods or
+data members declared as private are accessible only within the class in which they are declared.
+class Person {
+
+    // private variable
+    private String name;
+
+    public void setName(String name)  {
+
+        this.name = name; // accessible within class
+    }
+
+    public String getName() { return name; }
+}
+
+public class Geeks {
+    public static void main(String[] args)
+    {
+
+        Person p = new Person();
+        p.setName("Alice");
+
+        // System.out.println(p.name); // Error: 'name'
+        // has private access
+        System.out.println(p.getName());
+    }
+}
+Output
+Alice
+Explanation: Direct access to name is not allowed outside Person, enforcing encapsulation.
+
+Default Access Modifier
+When no access modifier is specified for a class, method, or data member, it is said to
+have the default access modifier by default. This means only classes within the same package can access it.
+class Car {
+    String model; // default access
+}
+
+public class Main {
+
+    public static void main(String[] args){
+
+        Car c = new Car();
+        c.model = "Tesla"; // accessible within the same package
+        System.out.println(c.model);
+    }
+}
+
+Java Advanced
+Practice Java
+Access Modifiers in Java
+Last Updated : 22 Nov, 2025
+In Java, access modifiers are essential tools that define how the members of a class, like
+variables, methods, and even the class itself, can be accessed from other parts of our program.
+
+There are 4 types of access modifiers available in Java:
+
+Access-Modifiers-in-Java-1
+Access Modifiers in Java
+Private Access Modifier
+The private access modifier is specified using the keyword private. The methods or data members
+ declared as private are accessible only within the class in which they are declared.
+
+
+
+
+class Person {
+    // private variable
+    private String name;
+
+    public void setName(String name)  {
+
+        this.name = name; // accessible within class
+    }
+
+    public String getName() { return name; }
+}
+
+public class Geeks {
+    public static void main(String[] args)
+    {
+
+        Person p = new Person();
+        p.setName("Alice");
+
+        // System.out.println(p.name); // Error: 'name'
+        // has private access
+        System.out.println(p.getName());
+    }
+}
+
+Output
+Alice
+Explanation: Direct access to name is not allowed outside Person, enforcing encapsulation.
+
+Default Access Modifier
+When no access modifier is specified for a class, method, or data member, it is said to have
+the default access modifier by default. This means only classes within the same package can access it.
+
+class Car {
+    String model; // default access
+}
+​
+public class Main {
+
+    public static void main(String[] args){
+
+        Car c = new Car();
+        c.model = "Tesla"; // accessible within the same package
+        System.out.println(c.model);
+    }
+}
+Output
+Tesla
+Explanation: Members with default access cannot be accessed from classes in a different package.
+
+Geeks.java: Default class within the same package
+// default access modifier
+package p1;
+
+// Class Geek is having
+// Default access modifier
+class Geek
+{
+    void display()
+    {
+        System.out.println("Hello World!");
+    }
+}
+GeeksNew.java: Default class from a different package (for contrast)
+// package with default modifier
+package p2;
+import p1.*;    // importing package p1
+
+// This class is having
+// default access modifier
+class GeekNew {
+    public static void main(String args[]) {
+
+        // Accessing class Geek from package p1
+        Geek o = new Geek();
+
+        o.display();
+    }
+}
+Explanation: In this example, the program will show the compile-time error when we try
+to access a default modifier class from a different package
+Protected Access Modifier
+The protected access modifier is specified using the keyword protected. The methods or data members declared as
+protected are accessible within the same package or subclasses in different packages.
+class Vehicle {
+    protected int speed; // protected member
+}
+
+class Bike extends Vehicle {
+    void setSpeed(int s)
+    {
+        speed = s; // accessible in subclass
+    }
+
+    int getSpeed()
+    {
+        return speed; // accessible in subclass
+    }
+}
+
+public class Main {
+    public static void main(String[] args){
+
+        Bike b = new Bike();
+        b.setSpeed(100);
+        System.out.println("Access via subclass method: "
+                           + b.getSpeed());
+
+        Vehicle v = new Vehicle();
+        System.out.println(v.speed);
+    }
+}
+Output
+Access via subclass method: 100
+0
+Explanation: speed is accessible via subclass methods and other classes in the same package,
+but direct access from a different package (non-subclass) would fail.
+
+Public Access Modifier
+The public access modifier is specified using the keyword public. Public members are accessible
+from everywhere in the program. There is no restriction on the scope of public data members.
+class MathUtils {
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(MathUtils.add(5, 10)); // accessible anywhere
+    }
+}
+Output
+15
+Explanation: add() is globally accessible due to the public modifier.
+
+Top-level classes or interfaces can not be declared as private because, private means
+"only visible within the enclosing class
+
+Comparison Table of Access Modifiers in Java
+                        Default       Private     Protected       Public
+                   -----------------------------------------------------------------
+Same Class              Yes           Yes         Yes             Yes
+--------------------------------------------------------------------------
+Same Package            Yes           No          Yes             Yes
+SubClass
+--------------------------------------------------------------------------
+Same Package            Yes           No          Yes             Yes
+Non-SubClass
+------------------------------------------------------------------------------
+Different Package       No           No           Yes             Yes
+SubClass
+------------------------------------------------------------------------------
+Different Package       No           No           No              Yes
+Non-SubClass
+
+When to Use Each Access Modifier in Real-World Projects
+Private: The idea should be use as restrictive access as possible, so private should be
+        used as much as possible.
+Default (Package-Private): Often used in package-scoped utilities or helper classes.
+Protected: Commonly used in inheritance-based designs like framework extensions.
+Public: This is used for API endpoints, service classes, or utility methods shared
+        across different parts of an application.
+

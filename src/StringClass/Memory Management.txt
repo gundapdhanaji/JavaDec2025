@@ -1,0 +1,69 @@
+PermGen
+    PermGen (Permanent Generation) was a special fixed-size memory area within the Java Virtual Machine (JVM) memory model used in Java versions 7 and earlier to store metadata about loaded classes and other static content.
+
+
+Java Memory Model basic structure
+The Java 8 memory model (JMM) is primarily defined by the replacement of the fixed-size Permanent Generation (PermGen) with the dynamically sized
+    Metaspace. This change helps prevent common OutOfMemoryError: PermGen space errors by allocating class metadata in the native operating system
+    memory rather than a limited area within the Java heap.
+
+
+The JVM memory is divided into several runtime data areas:
+Shared Among All Threads
+Heap Memory: This is the runtime data area from which memory for all class instances and arrays is allocated.
+It is managed by the garbage collector and is further divided into:
+Young Generation: Where all new objects are initially created. It is comprised of Eden space and two Survivor spaces (S1 and S2).
+                Objects that survive minor garbage collection cycles are moved between the survivor spaces.
+Old Generation (Tenured Space): Long-lived objects that have survived multiple garbage collection cycles in the young generation are promoted to this area.
+Method Area (Metaspace in Java 8): This logical area stores per-class structures such as the runtime constant pool, field and method data, and the code for methods and constructors.
+                In Java 8, Metaspace is allocated in native operating system memory, not the Java heap.It can grow automatically by default,
+                limited only by the available native memory of the host system (unless a maximum size is set using the -XX:MaxMetaspaceSize flag).
+Code Cache: Stores native code compiled by the Just-In-Time (JIT) compiler.
+Per-Thread
+Stack Memory: Each thread has its own private JVM stack, created when the thread is created. It stores method call frames, which hold local variables, operand stacks, and return addresses.
+PC Registers: Each thread has its own PC (Program Counter) register, which stores the address of the currently executing JVM instruction.
+Native Method Stacks: These support native methods (written in languages other than Java, like C or C++).
+
+important references regarding perm gen & metaspace
+https://www.betsol.com/blog/java-memory-management-for-java-virtual-machine-jvm/
+
+Q In how many ways we can create object in java ?
+    objects can be created in five primary ways,
+    1. Using the new keyword This is the most common and standard way to create an object, which explicitly invokes a constructor to initialize the new object.
+        MyClass obj = new MyClass();
+    2. Using the clone() method The clone() method creates a field-for-field copy of an existing object without calling a constructor for the new instance.
+        The class must implement the Cloneable interface and override the clone() method.
+        MyClass obj2 = (MyClass) obj1.clone();
+    3. Using deserialization When an object is deserialized (read from a byte stream), the JVM creates a new object without invoking any constructor.
+        The class must implement the Serializable interface.
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"));
+        MyClass obj3 = (MyClass) in.readObject();
+    4. Using Class.forName().newInstance() This reflective method dynamically loads the class and creates an instance using its no-argument constructor.
+        This method has been deprecated since Java 9 in favor of the Constructor class method.
+        MyClass obj4 = (MyClass) Class.forName("com.mypackage.MyClass").newInstance();
+    5.  Using Constructor.newInstance() This is the preferred reflective method, allowing you to invoke any constructor (including parameterized or private ones) dynamically
+        Constructor<MyClass> constructor = MyClass.class.getConstructor(String.class);
+        MyClass obj5 = constructor.newInstance("parameterValue");
+
+
+    Cloning in Java primarily involves two types, which differ based on how they handle referenced objects: shallow cloning and deep cloning
+    1. Shallow Cloning
+       Shallow cloning is the default behavior of the Object.clone() method.
+       How it works: A new object is created, and all fields from the original object are copied to the new instance.
+                    For primitive data types (like int, boolean, double), their values are copied directly.
+                    For reference types (objects), only the memory addresses (references) are copied.
+       Result: Both the original and cloned objects share the same referenced objects in memory.
+               Changes made to a referenced object through one instance will be reflected in the other.
+       When to use: It is efficient for objects containing only primitive fields or immutable objects
+
+    2. Deep Cloning
+       Deep cloning creates a completely independent copy of the original object and all its associated nested objects.
+       How it works: To achieve this, the default clone() method must be overridden with custom logic.
+                     This logic typically involves recursively calling the clone() method for all reference-type fields within the object
+       Result: The original and cloned objects are stored in separate memory locations, ensuring that modifications to one do not affect the other
+       When to use: It is essential when an object contains mutable reference fields and you need the cloned object to be fully isolated from the original.
+
+
+
+
+    
