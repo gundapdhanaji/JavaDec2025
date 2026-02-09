@@ -8,6 +8,355 @@ for instance variable, each instance or object will get a separate copy
 of that variable
 
 why we need static in java ?
-
-No need to create an object of the class to access static members/variables
+===> No need to create an object of the class to access static members/variables
 using class name we can access members/variables
+
+What is static block ?
+---------------------------------------------------
+When a block is declared with the static keyword, it is called static block in Java. It is a normal block
+of code enclosed in braces ({ }) and preceded by a keyword “static”.
+
+A static block is also known as a static initialization block or static initializer block in Java. It
+gets executed only once by JVM when the class is loaded into the memory by Java ClassLoader.
+This happens before any object of the class is created and before any static methods are accessed.
+
+We mainly use the static block to initialize static variables, set up resources, or perform any other
+tasks that need to be done before the class is used.
+
+Syntax to Declare Static Initialization Block in Java
+Static initialization blocks are enclosed within curly braces and are preceded by a keyword static.
+static {
+    // Logic here or Java code.
+}
+public class College {
+static String collegeName;
+
+// Static initialization block.
+static {
+   collegeName = "PIET";
+   System.out.println("Static block executed");
+}
+public static void main(String[] args) {
+    System.out.println("College Name: " + collegeName);
+  }
+}
+Output:
+      Static block executed
+      College Name: PIET
+In this example, we have created a variable named collegeName with static keyword. Since this is declared
+with static keyword, it is a static class variable. We have initialized it inside the static block.
+
+Why Static Initialization Block is Executed Before main() Method?
+-----------------------------------------------------------------------------------------------------
+When we execute a Java class, Java Virtual Machine (JVM) performs two actions at the runtime.
+They are as:
+1. JVM loads the corresponding .class file (bytecode) of the class into memory using ClassLoader.
+2. During the dot class file loading into memory, the JVM executes all static initialization blocks
+(also called static blocks) in the order they appear in the class.
+3. After loading the dot class file and executing the static block, JVM calls the main method to start
+the program execution. Therefore, static block is executed before the main method.
+
+In other words, we can say that a static initialization block always gets executed
+first in Java because it is executed at the time of class loading, before any object
+is created and before the main() method is called.
+Test Which Executes First Static Block or main() Method
+Example 2: Let’s write a Java program to test which one is executed first, the static
+initialization block, or main() method (i.e. static method) by JVM.
+package staticBlock;
+public class Test
+{
+// Static block declaration.
+   static {
+       System.out.println("Static block is executed.");
+   }
+public static void main(String [] args) {
+     System.out.println("Main method is executed.");
+ }
+}
+Output:
+       Static block is executed.
+       Main method is executed.
+If a static block is present in the Java program, the JVM executes it first of all during
+the class loading phase. After completing the execution of the static block(s), the JVM
+then searches for the main() method to begin the execution of the program. If the main()
+ method is not found, the JVM will throw a runtime error like
+Error: Main method not found in class ClassName, please define the main method as:
+public static void main(String[] args)
+
+If a static block is not present in the program, the JVM simply invokes the main() method
+directly after loading the class. Static blocks are optional — if none exist, the class
+is still loaded, and the main() method is called as usual.
+
+How Many Times .Class File is Loaded into Memory?
+--------------------------------------------------------------------------------------------------------------
+A .class file (i.e. compiled bytecode) is loaded into memory only once by the Java ClassLoader during
+the execution of program. As a result, the static block is executed only once, when the class is loaded.
+
+On the other hand, instance blocks (also called instance initialization blocks) are executed every time
+an object of the class is created. Therefore, the execution of instance block depends upon the class loading.
+
+For example, if you create 10 objects, the instance block will execute 10 times, but the
+static block will execute only once because the class is loaded only once. Let’s take an example
+program to understand this concept better.
+package staticBlock;
+public class StaticBlockTest
+{
+// Declare two instance blocks.
+   {
+      System.out.println("Instance block-1 executed.");
+   }
+   {
+      System.out.println("Instance block-2 executed.");
+   }
+
+// Declare two static blocks.
+   static {
+       System.out.println("Static block-1 executed.");
+   }
+   static {
+       System.out.println("Static block-2 executed.");
+   }
+
+// Declare non-parameterized constructor.
+   StaticBlockTest()
+   {
+      System.out.println("0-arg constructor executed.");
+   }
+// Declare one parameter constructor with a parameter a of type int.
+   StaticBlockTest(int a)
+   {
+      System.out.println("1-arg constructor executed.");
+   }
+
+public static void main(String[] args)
+{
+// Create an object of class.
+   new StaticBlockTest(); // Nameless object.
+
+// Create another object of class and pass an integer argument value.
+   new StaticBlockTest(20); // Nameless object.
+  }
+}
+Output:
+        Static block-1 executed.
+        Static block-2 executed.
+        Instance block-1 executed.
+        Instance block-2 executed.
+        0-arg constructor executed.
+        Instance block-1 executed.
+        Instance block-2 executed.
+        1-arg constructor executed.
+In the preceding example, we have declared two instance initialization blocks, two static initialization
+blocks, two constructors, and created two objects. Since we have created two objects, so instance blocks
+will execute two times, but the .class file is loaded only one time into the memory. Therefore, only one
+time static block will execute.
+
+Instance block and constructor both are executed during the object creation but instance block
+will always execute first before the execution of the constructor during the object creation.
+
+Order of Execution of Multiple Static Blocks in Java
+---------------------------------------------------------------------------------------------------
+A class can have any number of static initialization blocks that will execute in the same sequence
+as written in the Java program. That is, the order of execution of multiple static initialization blocks
+is executed automatically by JVM from top to bottom during the dot class file loading.
+
+Similarly, if a class contains instance blocks, they will execute every time an object is created,
+and always before the constructor.
+
+Example 4: The following Java program demonstrates the order in which multiple static blocks and instance
+blocks are executed when a class is loaded and objects are created.
+package staticBlock;
+public class MultipleStaticBlocks
+{
+// Declaration of instance blocks.
+   {
+      System.out.println("Instance block-1");
+   }
+   {
+      System.out.println("Instance block-2");
+   }
+
+// Declaration of static blocks.
+   static {
+       System.out.println("Static block-1");
+   }
+   static {
+       System.out.println("Static block-2");
+   }
+
+public static void main(String[] args)
+{
+    new MultipleStaticBlocks(); // object creation.
+ }
+}
+Output:
+       Static block-1
+       Static block-2
+       Instance block-1
+       Instance block-2
+
+Can We Execute Static Block without Main Method inside Class?
+------------------------------------------------------------------------------------
+It is possible to execute static block without the main() method inside the class up to Java 1.5 version.
+But Java 1.6 version onwards, the main method is mandatory to execute a static block inside the class.
+
+During the dot class file loading, first static blocks are executed and then JVM calls main method.
+Let’s take an example program where we will not declare the main method in the class and see what happens?
+package staticBlock;
+public class Test
+{
+  static {
+      System.out.println("Hello Java");
+  }
+  static {
+      System.out.println("Welcome you");
+  }
+}
+Output:
+       Error: Main method not found in class staticblockExample.Test,
+       please define the main method as: public static void main(String[] args)
+       or a JavaFX application class must extend JavaFX.application.Application
+
+Use of Static Initialization Block in Java
+----------------------------------------------------------------------------
+There are mainly three uses of static initialization block in Java that are as follows:
+
+The purpose of using a static initialization block is to write that logic inside static
+    block that is executed during the class loading.
+It is mostly used for changing default value of static variables.
+It is used to initialize static variables of the class.
+
+Let’s take an example program where we will change the value of static variables inside
+static initialization block.
+package staticBlock;
+public class Employee
+{
+  static String eName = "Deep";
+  static int eID;
+  static int age;
+  String companyName = "TCS"; // Instance variable.
+
+// Change the value of static variable in the static initialization block.
+   static {
+       eName = "Jack";
+       System.out.println("Name of Employee: " +eName);
+   }
+// Initialize the value of static variable in the S.B.
+   static {
+       eID = 2342;
+       System.out.println("Employee's Id: " +eID);
+   }
+
+// If you don't assign the value of static variable, it will print default value.
+// Here, I am not assigning any value to the employee's age.
+// So, it will print default value zero on the console. Zero is the default value of an integer.
+   static {
+       System.out.println("Employee's age: " +age);
+   }
+   static {
+       System.out.println("Company name: " +companyName); // Compile time error because we cannot
+       access not-static variables in the static block.
+   }
+public static void main(String[] args) {
+
+  }
+}
+Output:
+       Name of Employee: Shubh
+       Employee's Id: 2342
+       Employee's age: 0
+Note: In Java, a static block cannot access instance (non-static) variables and methods.
+
+Order of Execution of Different Components in Java
+-----------------------------------------------------------------------------------------------------------
+Let’s take an example where we will define all five components variable, method, constructor, instance block,
+and static block within a class. We will try to understand the order of execution in the program.
+package staticBlock;
+public class AllTest
+{
+   int x = 10;
+   static int y = 20;
+
+// Instance method.
+   void m1(int a)
+   {
+     System.out.println("Instance method");
+   }
+// Static method.
+   static void m2(String str)
+   {
+      System.out.println("Static method");
+   }
+// Constructors declaration.
+   AllTest()
+   {
+     System.out.println("0-arg constructor");
+   }
+   AllTest(int a)
+   {
+      System.out.println("1-arg constructor");
+   }
+
+// Instance initialization block.
+   {
+     System.out.println("Instance block");
+   }
+// Static initialization block.
+   static {
+      System.out.println("Static block");
+   }
+
+public static void main(String[] args) {
+     AllTest at = new AllTest();
+     AllTest at2 = new AllTest(10);
+     at.m1(50);
+     AllTest.m2("Shubh");
+  }
+}
+Output:
+        Static block
+        Instance block
+        0-arg constructor
+        Instance block
+        1-arg constructor
+        Instance method
+        Static method
+
+Advantage of Static Initialization Block in Java
+---------------------------------------------------------------
+The advantages of static initialization block in Java are as follows:
+
+Static initialization blocks are used to write logic that you want to execute during the class loading.
+They are commonly used to initialize the static variables, especially when the initialization requires
+complex logic, conditions, or loops.
+Static blocks can contain exception handling (e.g., try-catch) if static variable initialization
+may throw exception.
+We can use static blocks to perform initial configuration tasks like loading system properties,
+establishing database connections, and registering drivers or resources needed before object creation.
+Static blocks execute before any static method (including main() method), which makes them suitable
+for early setup requirements.
+
+Difference between Static block and Instance block in Java
+-----------------------------------------------------------------------------------------------------------
+The top five differences between static block and instance block in Java are as follows:
+
+1. Static block is also known as a static initialization block, whereas instance block is also
+known as instance initialization block or non-static block.
+
+2. They execute before the instance block, whereas instance block executes after the static blocks.
+
+3. Only static variables can be accessed inside the static block, whereas both static and non-static
+variables can be accessed inside the instance block.
+
+4. Static blocks execute when the class is loaded into the memory, whereas instance blocks execute
+only when instance of the class is created.
+
+5. ‘this’ keyword cannot be used in the static block, whereas this keyword can be used in the instance block.
+
+Key Points about Static Blocks:
+In Java, we cannot declare a static initialization block inside any method.
+JVM executes a static block on the highest priority basis when the dot class file is loaded into the memory.
+If the keyword “static” is missed before block, the block is called non-static block (instance block).
+This block will execute when class is instantiated.
+
+link https://www.scientecheasy.com/2020/06/static-block-java.html/

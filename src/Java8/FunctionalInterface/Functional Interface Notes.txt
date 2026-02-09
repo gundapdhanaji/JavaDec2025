@@ -14,14 +14,13 @@ let's add  1 more method in interface AAA
 
 I want to add new method in interface AAA but without having impact on 100 implementation classes
 
-
 1) default method
 2) static method
 
 Lambda Expression
 
 backward compatibility =>
-    Adding something new without breaking existing features
+    Adding something new without breaking existing features and without breaking existing working code
 
 abstract class vs interface after java 8
 
@@ -36,35 +35,35 @@ Functional interfaces provided by java ?
 8) Supplier    => get()
 9) BinaryOperator =
 
-Java 8 introduced several powerful features to the language, and one of the most
-                   significant among them is the concept of functional interfaces.
-Functional interfaces form the backbone of lambda expressions and method references,
-                         making them a crucial component of modern Java programming.
+Java 8 introduced several powerful features to the language, and one of the most significant among them is
+the concept of functional interfaces.
+Functional interfaces form the backbone of lambda expressions and method references,making them a crucial
+component of modern Java programming.
 
 Let’s delve deep into what functional interfaces are, their importance, and how they are used.
 
 What is a Functional Interface?
-    A functional interface is an interface that contains exactly one abstract method.
-    This single abstract method makes the interface suitable for use
-    with lambda expressions and method references. Functional interfaces can have
-    multiple default or static methods, but only one abstract method.
+A functional interface is an interface that contains exactly one abstract method. This single abstract method
+makes the interface suitable for use with lambda expressions and method references. Functional interfaces can have
+multiple default or static methods, but only one abstract method.
 
-    The @FunctionalInterface annotation is used to explicitly declare an interface as a
-        functional interface. While this annotation is not mandatory,
-    it helps the compiler catch errors if the interface does not conform to the rules of
-     a functional interface.
+The @FunctionalInterface annotation is used to explicitly declare an interface as a functional interface.
+While this annotation is not mandatory, it helps the compiler catch errors if the interface does not
+conform to the rules of a functional interface.
 
 Common Functional Interfaces in Java
-Java 8 introduced several pre-defined functional interfaces in the java.util.function
-     package to support lambda expressions and method
+Java 8 introduced several pre-defined functional interfaces in the java.util.function package to support
+lambda expressions and method
 
 What is Lambda Expression
+------------------------------------------------------------------------------------------------------------------------
 A Java 8 lambda expression is a concise way to represent an anonymous function
     (a function without a name, return type, or access modifier).
-It provides an inline implementation for the single abstract method of a functional
- interface (an interface with exactly one abstract method).
+It provides an inline implementation for the single abstract method of a functional interface
+(an interface with exactly one abstract method).
 
 Interface Vs Abstract Class After Java 8
+--------------------------------------------------------------------------------------------------------------
 Differences Between Interface And Abstract Class After Java 8 :
 1) Fields
 Interface fields are public, static and final by default. Interfaces still don’t support
@@ -81,25 +80,23 @@ But, abstract classes support final as well as non-final methods and static as w
 Also note that, only interfaces can have default methods. Abstract classes can’t have default methods.
 
 3) Constructors
-Interfaces can’t have constructors. Abstract classes can have any number of constructors
+    Interfaces can’t have constructors. Abstract classes can have any number of constructors
 
 4) Member’s Accessibility
     All members of interfaces are public by default. Interfaces don’t support private and protected members.
 But, abstract classes support all type of members – private, protected and public members.
 
 5) Multiple Inheritance
-A class can extend only one abstract class, but can implement multiple interfaces. Thus, a class can
+    A class can extend only one abstract class, but can implement multiple interfaces. Thus, a class can
 inherit multiple properties from multiple sources only through interfaces, not through abstract classes.
 
 Difference between Anonymous Class and Lambda Expression
 In Java, an anonymous class is an inner class without a name, primarily used for one-time,
-localized object creation,
-while a lambda expression is a concise syntax for creating
+localized object creation, while a lambda expression is a concise syntax for creating
 an instance of a functional interface (an interface with a single abstract method).
 
-Anonymous classes allow you to declare and instantiate a class at the same time,
-often used to override methods of a class or implement an interface without formally
-defining a new, named class.
+Anonymous classes allow you to declare and instantiate a class at the same time, often used to override
+methods of a class or implement an interface without formally defining a new, named class.
 Runnable r = new Runnable() {
     @Override
     public void run() {
@@ -109,26 +106,23 @@ Runnable r = new Runnable() {
 Usage: They can implement interfaces with multiple abstract methods or extend abstract/concrete classes.
 They can also have fields and additional methods.
 Scope: An anonymous class introduces a new scope, so the this keyword refers to
-    the anonymous class instance itself.
+the anonymous class instance itself.
 Compilation: The compiler generates a separate .class file for each anonymous class,
             which can increase the application's size.
 
 Lambda Expressions
 Lambda expressions, introduced in Java 8, provide a more concise way to represent an
-    anonymous function, treating functionality as a method argument or code as data.
+anonymous function, treating functionality as a method argument or code as data.
 Syntax: The syntax is much shorter, using an arrow -> to separate the parameter list from the body.
 
 Runnable r = () -> System.out.println("In run method");
 
-Usage: They are specifically designed for use with functional interfaces
-        (interfaces with a single abstract method).
-Scope: Lambdas do not introduce a new scope; this refers to the enclosing class instance,
-       similar to a local variable.
-      They can only access local variables that are final or effectively final.
-Compilation: No separate .class file is generated; the lambda body is converted into
-            a private method of the outer class,
+Usage: They are specifically designed for use with functional interfaces (interfaces with a single abstract method).
+Scope: Lambdas do not introduce a new scope; this refers to the enclosing class instance,similar to a local variable.
+They can only access local variables that are final or effectively final.
+Compilation: No separate .class file is generated; the lambda body is converted into a private method of the outer class,
        using the invokedynamic instruction for dynamic binding. This is more efficient
-        in terms of class loading and memory footprint.
+in terms of class loading and memory footprint.
 
 Summary of Key Differences
 Feature 	        Anonymous Class	                                        Lambda Expression

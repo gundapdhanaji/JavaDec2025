@@ -1,0 +1,188 @@
+Default Method in Java 8 Interface
+A default method in Java 8 is a method defined with a method body using default keyword inside
+an interface. It is sometimes called an optional method.
+A default method is defined inside an interface with a default implementation. We can also override
+the implementation of default method inside a class if required. But we should not require to do so.
+
+This is because if we do not override the default method, the default implementation
+will be used and the method definition will be concrete, not abstract.
+
+Declaration of Default Method in Java 8
+public interface Test {
+  void m1(); // Normal abstract method.
+  default void m2() // Default method.
+  {
+   // Default implementation.
+  }
+}
+
+In the above syntax, we have defined two interface methods, one is a normal abstract method,
+and another is a default method. Since all the members of an interface are public, therefore,
+both methods are considered public. The first method m1() is ended with a semicolon and doesn’t
+provide a body, whereas the second default method m2() provides a method body.
+
+Any class that implements interface may rely on the default implementation of m2() or override
+the method and provide its own implementation.
+
+Note: The default access modifier is completely different from the default keyword
+to define method in the interface.
+
+Why did Java 8 add Default Method to Interface?
+The purpose of introducing the default method in Java 8 was to improve code development and
+backward compatibility so that existing interfaces can support the lambda expressions
+without implementing methods in the implementation classes.
+
+Suppose we have an interface that is implemented by dozens or hundreds of classes. If we add a new
+method to an existing interface, such addition of a new method would break classes implementing
+interface because they will not have defined that method and forced to update their code.
+In practice, it would be almost impossible to update the code in hundreds of classes.
+
+But, in Java 8, the default method makes it easy to evolve interfaces. By defining a default
+implementation of the method, the existing interface becomes backward compatible with the
+existing code without breaking the old code.
+
+That’s why, a new concept “default method” is added to Java 8. We do not need to implement
+default methods in the implementation classes mandatorily. This new feature of Java 8 makes
+it backward compatible without breaking the old code.
+
+Rules to Define Default Method in Interface
+There are the following rules to define the default method inside a Java interface
+that needs to be familiar with:
+
+1. A default method may only be defined inside an interface, not within a class or abstract
+class. If you try to declare default method within a class, the code will not compile.
+
+2. It must be declared with the default keyword. If a method is declared as default, it must
+provide a method body. If you declare default method without method body, it will not compile.
+
+3. It cannot be marked with static, final, or abstract, as it may be used or overridden by
+a class that implements the interface.
+
+4. Like all methods in an interface, a default method is also considered as public and will
+not compile if declared as private or protected modifiers.
+
+5. Default keyword cannot be marked with static method because all default methods are instance methods.
+
+Default Method Example Program
+Let us take an example program where we will declare a default method with a body in interface.
+
+Example 1:
+public interface AA
+{
+   void m1(); // Normal abstract method
+
+// Default method so we do not need to implement it in the implementation class.
+   default void m2()
+   {
+      System.out.println(“default method”);
+   }
+}
+public class BB implements AA
+{
+// Implementing abstract method inside implementation class.
+   public void m1()
+   {
+      System.out.println(“m1-AA”);
+   }
+public static void main(String[] args)
+{
+    AA obj = new BB();
+    obj.m1(); // Calling default method of interface.
+    obj.m2(); // Calling abstract method of interface.
+  }
+}
+Output:
+       m1-AA
+       default method
+
+Q. Will the following code compile successfully? If not, why?
+public interface DefaultTest {
+  public default void m1();
+  public int m2() {
+     return 10;
+  }
+}
+Ans: In the above code, the first method m1() doesn’t compile because it is marked
+as default but doesn’t have a method body. The second method m2() will not
+also compile because it has a method body but is not marked with the default keyword
+public interface A {
+  public default int m1() {
+     return 10;
+  }
+  public default double m2() {
+     return 10.5;
+  }
+  public default boolean m3() {
+     return true;
+  }
+}
+public interface B extends A {
+  public default int m1() {
+     return 20;
+  }
+  public double m2();
+  public boolean m3() {
+     return false;
+  }
+}
+Ans: In the above code, the first interface A defines three default methods: m1(), m2(), and m3().
+The second interface B extends interface A and overrides the default method m1() with a new method
+that returns a different value.
+
+Interface B replaces the default method m2() with a new abstract method. Any class that implements
+interface B, must provide an implementation of the method.
+
+Finally, interface B overrides the m3() method but has not marked the method as default.
+So, the code will not compile because an interface may only contain default methods with a body.
+
+Interface Static Method in Java 8
+With the release of Java 8, we can also define static method within an interface. A static method
+within an interface is explicitly defined with a static keyword and method body.
+
+It works nearly the same as static methods defined in classes. A static method defined in
+Java 8 interface is not inherited in any classes that implement the interface.
+
+Rules of Define Static Method in Java 8 Interface
+There are the following static interface method rules that you need to be familiar with:
+
+1. Like all methods defined within an interface, a static method is considered to be public and
+will not compile if declared as private or protected.
+
+2. To call the static method, a reference to the name of the interface must be used.
+
+3. Abstract keyword cannot be used with static methods within an interface.
+
+4. We cannot use the default keyword for the static method because a default method is an
+instance in nature.
+
+5. We cannot override the static method in the implementation class because the static methods
+are not inherited by the subclass and must be accessed with a reference to the interface name.
+
+Static Method Interface Example Programs
+Let’s take an example program where we will declare a static method within an interface.
+Look at the program code to understand better.
+
+public interface Perimeter
+{
+  void msg();
+  static int peri(int l, int b)
+  {
+     return 2*(l + b);
+  }
+}
+public class Rectangle implements Perimeter
+{
+  public void msg()
+  {
+     System.out.println("Perimeter of rectangle");
+  }
+public static void main(String[] args)
+{
+   Perimeter p = new Rectangle();
+     p.msg();
+   int perimeter = Perimeter.peri(20,30);
+   System.out.println(perimeter);
+  }
+}
+Output:
+        Perimeter of rectangle 100

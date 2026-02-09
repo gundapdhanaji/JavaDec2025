@@ -1,4 +1,3 @@
-
 relationship between interface and class
 1) one class extends one class
 2) one class implements multiple interfaces
@@ -15,3 +14,346 @@ relationship between interface and class
 3) before java 8 interface are used for achieving 100% abstraction
 2) Interface methods are by default public abstract
 4) interface keyword used for defining interface
+
+Rules of Interface in Java
+Here are some key points for defining an interface in Java that must be kept in mind. The rules are as follows:
+
+An interface cannot be instantiated directly. However, you can create a reference to an interface type that
+points to an object of a class implementing it.
+An interface may not be declared with final keyword because it is meant to be implemented by other classes.
+It cannot have instance variables. If you declare a variable in an interface, it must be initialized at the
+time of declaration.
+A class that implements an interface must provide its own implementations of all the methods
+defined in the interface.
+You cannot reduce the visibility of an interface method while overriding. That is, when you implement
+an interface method, it must be declared as public.
+An interface can also be declared with an empty body (i.e. without any members). For example, java.util
+package defines EventListener interface without a body.
+An interface can be declared within another interface or class. Such interfaces are called
+nested interfaces in Java.
+A top-level interface can be public or default with the abstract modifier in its definition. Therefore,
+an interface declared with private, protected, or final will generate a compile-time error.
+All non-default methods defined in an interface are abstract and public by default. Therefore, a method
+defined with private, protected, or final in an interface will generate compile-time error.
+If you add any new method in interface, all concrete classes which implement that interface must provide
+implementations for newly added method because all methods in interface are by default abstract.
+
+Key Points about Implementing Interface:
+All methods of interfaces when implementing in a class must be declared as public otherwise,
+you will get a compile-time error if any other modifier is specified.
+Class extends class implements interface.
+Class extends class implements Interface1, Interface2 . . .
+
+Accessing Interface Variable in Java
+The interface is also used to declare a set of constants that can be used in multiple classes.
+The constant values will be available to any classes that implement interface because it is by default
+public, static, and final.
+
+Java Interface Example Programs
+Example 1: Using Interface Constants in Multiple Classes
+Let’s take an example program where multiple classes implement the same interface to use
+constant values declared in that interface.
+package interfacePrograms;
+interface ConstantValues
+{
+// Declaration of interface variables.
+   int x = 20;
+   int y = 30;
+ }
+class Add implements ConstantValues
+{
+  int a = x;
+  int b = y;
+  void m1()
+  {
+     System.out.println("Value of a: " +a);
+     System.out.println("Value of b: " +b);
+  }
+  void sum()
+  {
+    int s = x + y;
+    System.out.println("Sum: " +s);
+  }
+}
+class Sub implements ConstantValues
+{
+  void sub()
+  {
+    int p = y - x;
+    System.out.println("Sub: " +p);
+  }
+}
+public class Test
+{
+  public static void main(String[] args)
+  {
+    Add a = new Add();
+     a.m1();
+     a.sum();
+    Sub s = new Sub();
+     s.sub();
+   }
+}
+Output:
+       Value of a: 20
+       Value of b: 30
+       Sum: 50
+       Sub: 10
+
+Example 2: Interface Reference Pointing to Implementing Class Object
+package interfacePrograms;
+interface A
+{
+   void msg(); // No body.
+}
+public class B implements A
+{
+ // Override method declared in interface.
+    public void msg()
+    {
+       System.out.println("Hello Java");
+    }
+    void show()
+    {
+       System.out.println("Welcome you");
+    }
+   public static void main(String[] args)
+   {
+     B b = new B();
+     b.msg();
+     b.show(); // A reference of interface is pointing to objects of class B.
+
+     A a = new B();
+     a.msg();
+
+  // This statement will generate a compile-time error because
+  // a reference of interface can only call methods declared in it and implemented by implementing class.
+  // a.show();
+
+  // show() method is not part of interface. It is part of class B.
+  // When you will call this method, the compiler will give a compile-time error.
+  // It can only be called when you create an object reference of class B.
+   }
+}
+Output:
+       Hello Java
+       Welcome you
+       Hello Java
+
+Polymorphism in Java Interface
+When two or more classes implement the same interface with different implementations,
+then through the object of each class, we can achieve polymorphic behavior for a given interface.
+By creating objects of each implementing class and calling the methods defined in the interface,
+the same method behaves different depending on the class. This concept is called polymorphism in interface.
+
+Example: Polymorphism in Java using Interface and Multiple Implementations
+package interfacePrograms;
+interface Rectangle
+{
+   void calc(int l, int b); // no body.
+}
+public class RecArea implements Rectangle
+{
+  public void calc(int l, int b)
+  {
+     int area = l * b; // Implementation.
+     System.out.println("Area of rectangle = "+area);
+  }
+}
+class RecPer implements Rectangle
+{
+   public void calc(int l, int b)
+   {
+     int perimeter = 2 * (l + b); // Implementation.
+     System.out.println("Perimeter of rectangle = "+perimeter);
+   }
+}
+public class Execution {
+public static void main(String[] args)
+{
+     Rectangle rc; // Creating an interface reference.
+     rc = new RecArea(); // Creating object of RecArea.
+     rc.calc(20, 30); // calling method.
+
+     rc = new RecPer(); // Creating an object of RecPer.
+     rc.calc(20, 30);
+ }
+}
+
+Output:
+       Area of rectangle = 600
+       Perimeter of rectangle = 100
+As you can see in this program, multiple classes, such as RecArea and RecPer
+implement the same interface Rectangle with different implementations.
+
+Multilevel Inheritance by Interface
+Let’s take an example program in which we will create a multilevel inheritance by interface.
+If one interface extends an interface, that interface extends another interface, and a class
+implements methods of all interfaces, we can achieve multilevel inheritance by interfaces.
+
+Example: Multilevel Inheritance in Java Interfaces
+package interfacePrograms;
+interface Continent
+{
+  void showContinent();
+}
+interface Country extends Continent
+{
+  void showCountry();
+}
+interface State extends Country
+{
+  void showState();
+}
+public class City implements State {
+public void showContinent()
+{
+    System.out.println("Asia");
+}
+public void showCountry()
+{
+   System.out.println("India");
+}
+public void showState()
+{
+   System.out.println("Jharkhand");
+}
+void showCity()
+{
+   System.out.println("Dhanbad");
+}
+public static void main(String[] args)
+{
+   City c = new City();
+   c.showContinent();
+   c.showCountry();
+   c.showState();
+   c.showCity();
+  }
+}
+Output:
+       Asia
+       India
+       Jharkhand
+       Dhanbad
+As you can observe that class City implements interface State. The interface State is
+inherited from interface Country and Country is inherited from interface Continent.
+
+A class City also implements Country and Continent interfaces even though they are
+not explicitly included after the colon in the declaration of class City. The methods
+of all interfaces have been implemented in class City
+
+Multiple Inheritance in Java by Interface
+-------------------------------------------------------------------------
+When a class implements more than one interface, or an interface extends more than one interface,
+it is called multiple inheritance. Various forms of multiple inheritance are shown in the following figure.
+package multipleInheritancebyInterfaces;
+interface Home
+{
+  void homeLoan();
+}
+interface Car
+{
+  void carLoan();
+}
+interface Education
+{
+  void educationLoan();
+}
+public class Loan implements Home, Car, Education
+{
+// Multiple inheritance using multiple interfaces.
+   public void homeLoan()
+   {
+      System.out.println("Rate of interest on home loan is 8.5%");
+   }
+   public void carLoan()
+   {
+      System.out.println("Rate of interest on car loan is 9.25%");
+   }
+   public void educationLoan()
+   {
+      System.out.println("Rate of interest on education loan is 10.45%");
+   }
+   public static void main(String[] args)
+   {
+     Loan l = new Loan();
+     l.homeLoan();
+     l.carLoan();
+     l.educationLoan();
+   }
+}
+Output:
+       Rate of interest on home loan is 8.5%
+       Rate of interest on car loan is 9.25%
+       Rate of interest on education loan is 10.45%
+The above program contains three interfaces, such as Home, Car, and Education. The class Loan
+inherits these three interfaces. Thus, we can achieve multiple inheritance in java through interfaces.
+
+In Java, Multiple Inheritance is not supported through Class, but it is possible by Interface. Why?
+--------------------------------------------------------------------------------------
+As we have explained in the inheritance chapter, in multiple inheritance, subclasses are derived
+from multiple super classes. If two super classes have the same method name, then which method
+is inherited into subclass is the main confusion in multiple inheritance.
+
+That’s why Java does not support multiple inheritance in the case of class. But, it is
+supported through an interface because there is no confusion. This is because its implementation
+is provided by the implementation class. Let’s understand it with the help of an example program.
+
+Example: Resolving Method Conflict in Multiple Inheritance Using Interfaces
+package multipleInheritancebyInterface;
+interface AA
+{
+  void m1();
+}
+interface BB
+{
+  void m1();
+}
+public class Myclass implements AA, BB
+{
+  public void m1()
+  {
+     System.out.println("Hello Java");
+  }
+  public static void main(String[] args)
+  {
+    Myclass mc = new Myclass();
+    mc.m1();
+  }
+}
+Output:
+       Hello Java
+
+As you can see in the above example, AA and BB interfaces have the same method name
+but there will be no confusion regarding which method is available to the implementation class.
+
+Since both methods in interfaces have no body, and the body is provided in the implementation
+class, i.e. its implementation is provided by class Myclass. Thus, we can use methods of AA
+and BB interfaces without any confusion in a subclass.
+
+Can We have an Interface without any Methods or Fields?
+An interface without any fields or methods is called marker interface in Java. There are
+several built-in Java interfaces that have no method or field definitions. For example,
+Serializable, Cloneable, and Remote all are marker interfaces. They act as a form of
+communication among class objects.
+
+Q. Why interface methods are public and abstract by default?
+
+Ans: Interface methods are public and abstract by default because their implementation
+is left for third-party vendors.
+
+Q. Suppose A is an interface. Can we create an object using new A()?
+
+Ans: No, we cannot create an object of interface directly like this. This is because an interface
+does not provide method implementations, so the JVM cannot instantiate it. Instead, we create objects
+of the implementing classes.
+
+Q. Suppose A is an interface. Can we declare a reference variable x of type A like this A x;?
+
+Ans: Yes, we can declare a reference variable of type interface.
+
+
+
+
+
