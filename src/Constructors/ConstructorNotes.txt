@@ -1,3 +1,4 @@
+this and super are this first in a constructor so we can used only one at a time
 this()
     this keyword or method used to refer current class constructor
     using this() method we called different constructor of same class we can achieve constructor chaining
