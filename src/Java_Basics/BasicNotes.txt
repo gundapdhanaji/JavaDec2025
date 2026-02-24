@@ -1,0 +1,26 @@
+Features of Java
+1. Simple - clean and syntax are easy to understand no pointers,headers,preprocessors
+2.Object Oriented -  easy to maintain
+3.WORA - Write Once Run Anywhere.
+    when we compile the java source code it generates byte code and this byte code can run on any platform (OS) like Linux, Mac, windows
+4.Security
+5.very good Memory Management System
+6.very good exception handling mechanism
+7.java is multiThreaded - enhance performance
+
+
+Java comes in the form of 3 categories
+1. JSE/J2SE : java 2 standard Edition
+2. JEE/J2EE : Java 2 enterprise Edition
+3. JME/J2ME : java 2 Micro Edition
+
+J2SE :- It is an specification from Sun-microsystem
+    -- implementation of this J2SE specification is JDK software
+
+ -- basic steps to develop and execute a java application are :
+ 1.Compilation phase
+ 2.Execution phase
+
+ X.java (source code) ---> java compiler ---> X.class file(byte code)(platform independent)
+ you can execute this .class file any platform where JRE installed. In JRE there is JVM which responsible to execute program
+

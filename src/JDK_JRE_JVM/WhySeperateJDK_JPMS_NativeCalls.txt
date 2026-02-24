@@ -45,6 +45,7 @@ WindowsFileSystemProvider.delete gets called, which eventually calls WindowsNati
 Now, look at the declaration of this method:
 
 private static native void DeleteFile0(long lpFileName) throws WindowsException;
+
 The keyword native indicates that the method has a native implementation. As you can see, there is no method body that
 contains the implementation. Instead, a platform-specific library contains the implementation of this method.
 For every platform on which a Java application is supposed to run, there needs to be platform-specific code that gets

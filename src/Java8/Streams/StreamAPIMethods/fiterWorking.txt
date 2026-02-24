@@ -1,0 +1,2 @@
+How to find the first element from a Stream with a filter
+https://www.java67.com/2018/03/java-8-stream-find-first-and-filter-example.html

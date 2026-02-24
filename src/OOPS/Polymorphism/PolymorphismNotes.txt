@@ -1,0 +1,230 @@
+Method Overloading in Java
+Method Overloading in Java allows us to create multiple methods with the same name to
+perform similar tasks using different parameters.
+
+What is Method Overloading in Java?
+Method overloading in Java is the feature that enables defining more than one method in
+a class having the same name but with different types and number of parameters. When a
+method is called, Java decides which version of it to execute depending on the arguments
+given. If we have to perform only one operation, having the same name of the methods
+increases the readability of the Java program.
+
+Understanding Method Overloading with Examples
+Suppose you have to perform the addition of the given numbers, but there can be any number
+of arguments if you write the method such as a(int,int) for two parameters, and
+b(int,int,int) for three parameters then it may be difficult for you as well as
+other programmers to understand the behavior of the method because its name differs
+
+Different Approaches of Method Overloading
+Method overloading in Java can be achieved in the following two ways:
+
+By Changing the Number of Arguments:
+Method overloading is achieved by defining methods with the same name but a different
+number of parameters.
+By Changing the Data Type:
+Method overloading can also be achieved by keeping the number of parameters
+same but changing their data types.
+
+
+Note: In Java, method overloading is not possible by changing the return type of the method only.
+
+1. Method Overloading by Changing the Number of Arguments
+Method overloading in Java allows defining multiple methods with the same name but different
+parameter lists. One common form of overloading is changing the number of arguments in the
+method signature. In this example, we have created two methods, the first add() method
+performs addition of two numbers, and the second add method performs addition of three numbers.
+
+In this example, we are creating static methods so that we don't need to create instance
+for calling methods. Let us take an example to demonstrate the method overloading
+by changing number of arguments in Java.
+
+// Class Adder contains overloaded methods to add integers
+class Adder {
+    // Method to add two integers
+    static int add(int a, int b) {
+        return a + b;
+    }
+    // Method to add three integers
+    static int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        // Calling the add method with two integers
+        System.out.println(Adder.add(11, 11)); // Output: 22
+        // Calling the add method with three integers
+        System.out.println(Adder.add(11, 11, 11)); // Output: 33
+    }
+}
+
+2. Method Overloading by Changing Data Type
+Method overloading in Java also allows changing the data type of arguments in the method
+signature. Here's an example demonstrating method overloading based on the data type of
+arguments: In this example, we have created two methods that differs in data type.
+The first add method receives two integer arguments and second add method receives
+two double arguments.
+
+Here, we are going to take an example to demonstrate method overloading by
+changing the data type of arguments in Java.
+/ Class Adder contains overloaded methods to add numbers
+class Adder {
+    // Method to add two integers
+    static int add(int a, int b) {
+        return a + b;
+    }
+    // Method to add two doubles
+    static double add(double a, double b) {
+        return a + b;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        // Calling the add method with two integers
+        System.out.println(Adder.add(11, 11)); // Output: 22
+        // Calling the add method with two doubles
+        System.out.println(Adder.add(12.3, 12.6)); // Output: 24.9
+    }
+}
+
+Return Type Limitation in Method Overloading
+Method overloading in Java is based on the method signature, which includes the method
+name and parameter list. The return type alone is not sufficient to distinguish between
+overloaded methods because Java does not consider the return type when resolving method
+calls. If two methods have the same name and parameter list but different return types,
+the compiler cannot determine which method to call based solely on the return type
+
+Method Overloading and Type Promotion
+One type is promoted to another implicitly if no matching datatype is found.
+byte can be promoted to short, int, long, float or double. The short datatype can be
+promoted to int, long, float or double. The char datatype can be promoted
+to int,long,float or double and so on.
+Example: Method Overloading with TypePromotion
+class OverloadingCalculation{
+  void sum(int a,long b){System.out.println(a+b);}
+  void sum(int a,int b,int c){System.out.println(a+b+c);}
+}
+public class Main{
+  public static void main(String args[]){
+  OverloadingCalculation obj=new OverloadingCalculation();
+  obj.sum(20,20);//now second int literal will be promoted to long
+  obj.sum(20,20,20);
+  }
+}
+
+If there are matching type arguments in the method, type promotion is not performed
+class OverloadingCalculation{
+  void sum(int a,int b){System.out.println("int arg method invoked");}
+  void sum(long a,long b){System.out.println("long arg method invoked");}
+}
+public class Main{
+  public static void main(String args[]){
+  OverloadingCalculation obj=new OverloadingCalculation();
+  obj.sum(20,20);//now int arg sum() method gets invoked
+  }
+}
+
+Method Overloading with Type Promotion in case of Ambiguity
+If there are no matching type arguments in the method, and
+each method promotes similar number of arguments, there will be ambiguity.
+
+class OverloadingCalculation3{
+  void sum(int a,long b){System.out.println("a method invoked");}
+  void sum(long a,int b){System.out.println("b method invoked");}
+}
+public class Main{
+  public static void main(String args[]){
+  OverloadingCalculation3 obj=new OverloadingCalculation3();
+  obj.sum(20,20);//now ambiguity
+  }
+}
+
+Note: One type is not de-promoted implicitly for example double cannot
+be de-promoted to any type implicitly.
+
+Advantages of Method Overloading
+Readability and Maintainability: Overloading allows methods to have the same name and
+    different parameter lists, which increases readability and comprehensibility of the
+    code. It helps developers to name the different functions in a good way so that
+    other developers can easily understand the code and maintain it.
+
+Code Reusability: To avoid using too many methods with different names even when their
+    function is similar, method overloading makes it possible to reuse method names
+    but have different types or numbers of parameters. It causes the code to be reusable
+    and, therefore, reduces code duplication.
+
+Flexibility: Method overloading gives the developer an advantage in creating methods which
+    can be called with any number of different parameters types or numbers. It offers
+    such flexibility to make APIs that can be expanded to multiple utilities
+
+Polymorphism: Method overloading is a key to the realization of polymorphism in the Java,
+    which permits objects of the same type to react differently to method calls depending
+    on the method's arguments. This behavior somewhat polymorphic, hence leads to
+    modularity and extensibility of code.
+
+Simplifies API Design: In the case of API design, the method overload is simplifying
+    the interface as it serves multiple ways in which to interact with the same
+    functionality. The API users can select the most convenient method signature according
+    to their needs and then create a more thoughtful and user-centered interface as a result.
+
+Enhances Code Readability: Overloading methods creates an opportunity of having multifaceted
+    functions encapsulated within a class. Developers not only pick the same method name for
+    similar operations, but also the purpose of each method becomes clearer, as well as
+    their intended use cases
+
+Disadvantages of Method Overloading
+Ambiguity: Overloading may result in ambiguity if two of more overloaded methods have the
+    same types of parameters. In such instances, the compiler cannot tell which method has to
+    be invoked based on argument alone therefore compilation error can occur.
+
+Complexity: Deepening the use of method overloading may make code complex, especially if
+    there are many overloaded methods with similar names but different patterns of parameters
+
+Overuse: Some developers may bypass this rule completely and use method overloading too much to
+    avoid coming up with different method names for similar features. In comparison, excessive
+    calling of overloading methods carries the risk of code bloat and decreased code clarity,
+    hence making it harder to underpin each method purpose.
+
+Maintenance Challenges: Developers who are modifying or extending code which contains method
+    overloading method should be even more careful to ensure that the changes they make will
+    not affect the behavior of other overloaded methods unintentionally. This creates greater
+    maintenance difficulty, which is particularly true in the case of extensive codebases.
+=================================================================================================
+
+Method Overriding in Java
+What is Method Overriding in Java?
+Method Overriding allows a subclass to provide its own specific implementation of a method
+that is already defined in its parent class. Method overriding supports runtime polymorphism
+by enabling dynamic method binding, where the method call is resolved at runtime based on the
+actual object type.
+
+Rules for Java Method Overriding
+The following are the important rules of method overriding in Java:
+
+Same Method Name: The overriding method in the subclass must have the same name as the method
+    in the superclass that it is overriding.
+Same Parameters: The overriding method must have the same number and types of parameters
+    as the method in the superclass. This ensures compatibility and consistency with the
+    method signature defined in the superclass.
+IS-A Relationship (Inheritance): Method overriding requires an IS-A relationship between the
+    subclass and the superclass. This means that the subclass must inherit from the superclass,
+    either directly or indirectly, to override its methods.
+Same Return Type or Covariant Return Type: The return type of the overriding method can be
+    the same as the return type of the overridden method in the superclass, or it can be
+    a subtype of the return type in the superclass. This is known as the covariant return type,
+    introduced in Java 5.
+Access Modifier Restrictions: The access modifier of the overriding method must be the same
+    as or less restrictive than the access modifier of the overridden method in the superclass.
+    Specifically, a method declared as public in the superclass can be overridden as public or
+    protected but not as private. Similarly, a method declared as protected in the superclass
+    can be overridden as protected or public but not as private. A method declared as default
+    (package-private) in the superclass can be overridden with default, protected, or public,
+    but not as private.
+No Final Methods: Methods declared as final in the superclass cannot be overridden in the subclass.
+    Because final methods cannot be modified or extended.
+No Static Methods: Static methods in Java are resolved at compile time and cannot be overridden.
+    Instead, they are hidden in the subclass if a method with the same signature is defined in
+    the subclass.
+
+
+

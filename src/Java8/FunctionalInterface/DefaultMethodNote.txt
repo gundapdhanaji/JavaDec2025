@@ -61,7 +61,8 @@ a class that implements the interface.
 4. Like all methods in an interface, a default method is also considered as public and will
 not compile if declared as private or protected modifiers.
 
-5. Default keyword cannot be marked with static method because all default methods are instance methods.
+5. Default keyword cannot be marked with static method because all default methods
+are instance methods.
 
 Default Method Example Program
 Let us take an example program where we will declare a default method with a body in interface.

@@ -1,0 +1,127 @@
+Static Methods and Method Overriding
+Static methods cannot be overridden in Java. When a subclass declares a static method with the same
+signature as a static method in its superclass, it does not override the method; instead,
+it hides the superclass method. As a result, the method that gets executed is determined
+at compile time based on the reference type, not at runtime based on the actual object type.
+Therefore, static methods do not support runtime polymorphism like instance methods.
+
+Method overriding is based on dynamic method dispatch, where the method call is resolved at
+runtime according to the actual object. However, static methods are associated with the class itself,
+not with individual objects, and hence they are resolved at compile time. Because of this,
+static methods are not eligible for dynamic dispatch and cannot be overridden
+
+Additionally, there is a difference in how static and instance methods are handled in memory.
+Instance methods are invoked through objects and are tied to the heap memory,
+while static methods are stored in the method area of the JVM and are shared
+among all instances of the class. Due to these fundamental differences in behavior,
+binding, and memory allocation, static methods cannot participate in method overriding.
+
+Method Overloading Vs. Method Overriding
+The following table shows the demonstrate the difference between Method Overloading and
+Method Overriding:
+
+Aspect                          Method Overloading                      Method Overriding
+Purpose and Intent     Method overloading is used to        Method overriding is used to provide the
+                       increase the readability of          specific implementation of the method that
+                       the program.                         is already provided by its superclass.
+
+Relationship between    Method overloading is               Method overriding occurs in two classes
+Classes                 performed within class.             that have IS-A (inheritance) relationship.
+
+
+Parameter               In case of method overloading,      In case of method overriding,
+Requirements            parameters must be different.       parameters must be the same.
+
+
+Polymorphism Type       Method overloading is the example   Method overriding is the
+                        of compile-time polymorphism.       example of runtime polymorphism.
+
+Return Type            In Java, method overloading can't    Return type must be the same
+Constraints            be performed by changing the         or covariant in method overriding.
+                       return type of the method only.
+                       Return type can be the same or
+                       different in method overloading,
+                       but you must have to change the
+                       parameter.
+
+Access Modifiers        It can have any access modifier.    The overriding method cannot have
+                                                            a more restrictive access modifier
+                                                            than the overridden method
+
+Exceptions             It can throw any exceptions.         It throws only checked exceptions
+                                                            declared in the superclass method or
+                                                            its subclasses.
+
+Invocation             It resolved at compile-time.         It resolved at runtime using dynamic
+                                                            method dispatch.
+
+
+Inheritance             Required                            Not required.Required (through subclassing
+                                                            or interface implementation).
+Binding             It uses static binding.                 It uses dynamic binding.
+Early and Late      It is also known as early binding.    It is also known as late binding.
+Binding
+
+Signature Matching  Method signatures must be different.    Method signatures must be identical.
+
+Static Method       Static method can be overloaded.        Static method cannot be overridden.
+
+Final and Public    It is applicable to both                It is not applicable to private and
+Method              private and final methods               final methods.
+
+Error               If any error occurs, can be             If any error occurs, can be caught at
+                    caught at compile-time.                 run-time.
+
+Java Access Modifiers with Method Overriding
+If you are overriding any method, overridden method (i.e. declared in subclass)
+must not be more restrictive.
+class A{
+protected void msg(){System.out.println("Hello java");}
+}
+public class Simple extends A{
+void msg(){System.out.println("Hello java");}//C.T.Error
+ public static void main(String args[]){
+   Simple obj=new Simple();
+   obj.msg();
+   }
+}
+Class A declares a method called msg() with the protected access modifier in the
+provided Java code. By extending class A, class Simple aims to replace the message()
+function with a default access modifier. But because the default access modifier
+is more restricted than protected, this leads to a compile-time error.
+When overriding a method in Java, the overridden method's access level in the subclass
+needs to be at least as liberal as the method's access level in the superclass.
+Thus, in order to fix the issue, either the class Simple method's access modifier-such
+as protected or public-should be as liberal as protected, or the class A method should
+have a less permissive access modifier-such as default or public.
+
+Covariant Return Type in Java
+
+The covariant return type in Java allows the return type of an overridden method to be a
+subtype of the return type defined in the superclass. In other words, we can say the
+covariant return type specifies that the return type may vary in the same direction
+as the subclass.
+Example of Covariant Return Type
+class A{
+A get(){return this;}
+}
+class B1 extends A{
+@Override
+B1 get(){return this;}
+void message(){System.out.println("Welcome to the covariant return type");}
+public static void main(String args[]){
+new B1().get().message();
+}
+}
+In this example, class B1 overrides the get() method of class A using a covariant
+return type. The overridden method in B1 returns B1 instead of A, allowing us to call
+the message() method directly on the returned object. This demonstrates how covariant
+return types enable more specific return types in method overriding.
+
+Advantages of Covariant Return Type
+There are following advantages of Covariant Return Type in Java.
+1.Covariant return type assists to stay away from the confusing type casts in the class
+    hierarchy and makes the code more usable, readable, and maintainable.
+2.In the method overriding, the covariant return type provides the liberty to have
+  more to-the-point return types.
+3. Covariant return type helps in preventing the run-time ClassCastExceptionson returns.

@@ -1,0 +1,68 @@
+Java 8 Collectors tutorial mainly consist of three things – Stream.collect() method, Collector
+interface and Collectors class. collect() method is a terminal operation in Stream interface.
+Collector is an interface in java.util.stream package. Collectors class, also a member of
+java.util.stream package, is an utility class containing many static methods which perform
+some common reduction operations.
+
+1) Stream.collect() Method
+collect() method is a terminal operation in Stream interface. It is a special case of reduction operation
+called mutable reduction operation because it returns mutable result container such as List, Set or Map
+according to supplied Collector.
+
+3.1) Collectors.toList() :
+    It returns a Collector which collects all input elements into a new List.
+
+3.2) Collectors.toSet() :
+    It returns a Collector which collects all input elements into a new Set.
+
+Query 3.4 : Get the details of highest paid employee in the organization?
+    Use Collectors.maxBy() method which returns maximum element wrapped in an Optional object based
+    on supplied Comparator.
+
+In Java Streams, both:
+stream().collect(Collectors.toList())
+stream().toList()
+are used to convert a Stream into a List — but they are not exactly the same.
+✅ 1️⃣ stream().collect(Collectors.toList())
+🔹 Introduced in:
+👉 Java 8
+List<String> list = Stream.of("A", "B", "C")
+                           .collect(Collectors.toList());
+🔹 Important Points:
+Returns a mutable List
+Usually returns an ArrayList
+You can modify it
+list.add("D");   // ✅ Works fine
+
+🔹 When to use?
+✔ When you want to modify the list later
+✔ When working in Java 8
+✔ When you need flexibility
+
+✅ 2️⃣ stream().toList()
+🔹 Introduced in:
+👉 Java 16
+List<String> list = Stream.of("A", "B", "C")
+                           .toList();
+🔹 Important Points:
+Returns an unmodifiable List
+You cannot add/remove elements
+More concise and readable
+list.add("D");   // ❌ Throws UnsupportedOperationException
+
+
+🔥 Major Difference
+Feature	            collect(Collectors.toList())	stream().toList()
+Java Version	    Java 8	                        Java 16
+Mutable	            ✅ Yes	                        ❌ No
+Modifiable	        ✅ Yes	                        ❌ No
+Short Syntax	    ❌ No	                        ✅ Yes
+Recomm.(Modern Java)	⚠ Depends	                ✅ Yes
+
+
+
+
+
+
+
+

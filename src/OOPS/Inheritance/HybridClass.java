@@ -19,9 +19,19 @@ class MenClass extends GrandParent{
     }
 }
 class ChildClass1 extends MenClass{
+    int rupees = 100;
+    String property = "Own House";
     public void behaviourOfChild1 (){
 //        super.behaviour();
         System.out.println("Behaviour of Child-1 like men");
+    }
+
+    @Override
+    public String toString() {
+        return "ChildClass1{" +
+                "rupees=" + rupees +
+                ", property='" + property + '\'' +
+                '}';
     }
 }
 class ChildClass2 extends GrandParent{
@@ -39,9 +49,11 @@ public class HybridClass {
         childClsObj.behaviourOfMen();
         childClsObj.propertyOfGP();
         System.out.println(" ================================= ");
+        System.out.println("passing custom Class obj as a parameter "+childClsObj);
         MenClass menClsObj = new MenClass();
         menClsObj.behaviourOfMen();
         menClsObj.propertyOfGP();
+        System.out.println("passing another class obj as a param "+menClsObj);
 
 
     }

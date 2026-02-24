@@ -74,8 +74,8 @@ Q2. Why we get Exception in java ?
 
     Q.Exception vs Throwable
 
-    In Java, both Error and Exception are subclasses of the Throwable class, but they represent different types of problems
-     and are handled differently.
+    In Java, both Error and Exception are subclasses of the Throwable class, but they represent different types of
+    problems and are handled differently.
     Exceptions are generally recoverable problems that occur due to issues in the application code,
             such as invalid user input or network failures, and should be handled programmatically.
     Errors are serious, unrecoverable problems that occur outside the control of the application, usually within the
@@ -84,52 +84,56 @@ Q2. Why we get Exception in java ?
     Key Differences: Error vs. Exception
     Aspect 	            Error (java.lang.Error)	                     Exception (java.lang.Exception)
     --------------------------------------------------------------------------------------------------------------------------
-    Nature	            Serious, system-level issues                 Application-level issues (e.g., bad input, file not found,
-                        (e.g., resource depletion, JVM crash).	     programming logic errors).
+    Nature	            Serious, system-level issues                 Application-level issues (e.g., bad input, file
+                        (e.g., resource depletion, JVM crash).	     not found,programming logic errors).
     --------------------------------------------------------------------------------------------------------------------------
     Recoverability	    Generally not recoverable; typically         Recoverable; can be caught and handled using try-catch
                         leads to abnormal program termination.	     blocks to allow the program to continue running.
     --------------------------------------------------------------------------------------------------------------------------
-    Handling	        Not meant to be caught or                    Designed to be caught and handled to prevent program crashes.
-                        handled by application code.
+    Handling	        Not meant to be caught or                    Designed to be caught and handled to prevent program
+                        handled by application code.                  crashes.
     ---------------------------------------------------------------------------------------------------------------------------
     Type	            Always unchecked (not checked at             Can be checked (compile-time, must be handled)
                         compile time).                                or unchecked (runtime, optional handling).
     -----------------------------------------------------------------------------------------------------------------------------
     Examples	        OutOfMemoryError, StackOverflowError,         IOException, SQLException, NullPointerException,
-                        VirtualMachineError.                                                ArrayIndexOutOfBoundsException
+                        VirtualMachineError.                          ArrayIndexOutOfBoundsException
     ----------------------------------------------------------------------------------------------------------------------------
 
 Difference Between Error and Exception in Java
     Error	                                                        Exception
     An error cannot be handled at runtime.	                        An exception can be handled at runtime
-    An error can occur both at compile time                         Although all the Exceptions occur at runtime.
-    and during runtime.                                             But checked Exceptions can be detected at compile time.
-    There are 3 types of Errors: Syntax Error,                      There are 2 types of Exceptions: Checked Exceptions and Unchecked Exceptions
-     Runtime Error and Logical Error
-    An error has the capacity to terminate your program             An exception has the capacity to distract the normal flow of the program
-    and maybe your system as well.                                  and change its direction to somewhere else when an exceptional case has occurred.
-
-    An Error is such an event that no one can control               An Exception can be guessed, handled, and utilized in order
-    or guess when it is going to happen.	                        to change the original flow of the program.
-
-    An Error can be thought of as an explosion that happens         An Exception can be thought of as a last line of defense to prevent errors.
-    when there is no defense or checks against a particular
+------------------------------------------------------------------------------------------------------------------------
+    An error can occur both at compile time                         Although all the Exceptions occur at runtime. But
+    and during runtime.                                             checked Exceptions can be detected at compile time.
+-------------------------------------------------------------------------------------------------------------------------
+    There are 3 types of Errors: Syntax Error,                      There are 2 types of Exceptions: Checked Exceptions
+     Runtime Error and Logical Error                                and Unchecked Exceptions
+-------------------------------------------------------------------------------------------------------------------------
+    An error has the capacity to terminate your program             An exception has the capacity to distract the normal
+    and maybe your system as well.                                  flow of the program and change its direction to
+                                                                    somewhere else when an exceptional case has occurred.
+------------------------------------------------------------------------------------------------------------------------
+    An Error is such an event that no one can control               An Exception can be guessed, handled, and utilized
+    or guess when it is going to happen.	                        in order to change the original flow of the program.
+------------------------------------------------------------------------------------------------------------------------
+    An Error can be thought of as an explosion that happens         An Exception can be thought of as a last line of
+    when there is no defense or checks against a particular         defense to prevent errors.
      failure condition.
 
     Key Distinctions
     Error indicates a problem that is outside the scope of the application code's control, such as running out of memory
         or a fundamental issue with the Java Virtual Machine (JVM). Trying to catch and handle these generally does not
         make sense because the program is in an unstable state and should usually be allowed to terminate.
-    Exception is intended for conditions that a reasonable application might want to anticipate and handle programmatically.
-        For example, if a program tries to open a file that doesn't exist, a FileNotFoundException is thrown,
-        which the programmer can catch and manage gracefully (e.g., by prompting the user for a new file path).
+    Exception is intended for conditions that a reasonable application might want to anticipate and handle
+        programmatically.For example, if a program tries to open a file that doesn't exist, a FileNotFoundException
+        is thrown,which the programmer can catch and manage gracefully (e.g., by prompting the user for a new file path).
     =========================================================================================================================
     Checked vs. Unchecked Exceptions: All errors are unchecked. Exceptions, however, are further divided:
-    Checked exceptions (e.g., IOException) must be handled explicitly in the code (using try-catch or a throws clause) for
-        the program to compile.
-    Unchecked exceptions (e.g., RuntimeException subclasses like NullPointerException or ArrayIndexOutOfBoundsException) are
-        typically the result of programming errors and do not need to be explicitly handled by the compiler,
+    Checked exceptions (e.g., IOException) must be handled explicitly in the code
+        (using try-catch or a throws clause) for the program to compile.
+    Unchecked exceptions (e.g., RuntimeException subclasses like NullPointerException or ArrayIndexOutOfBoundsException)
+         are typically the result of programming errors and do not need to be explicitly handled by the compiler,
          although they can be caught.
 
 ****************************************************************************************************************************************
