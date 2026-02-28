@@ -1,7 +1,7 @@
 relationship between interface and class
 1) one class extends one class
 2) one class implements multiple interfaces
-3) one interface implements multiple interfaces
+3) one interface extends multiple interfaces
 4) If one abstract class implements 1 or more interfaces,
     then it's not mandatory for that abstract child class to provide method implementation of
     abstract methods of interfaces.
@@ -121,9 +121,9 @@ public class B implements A
    {
      B b = new B();
      b.msg();
-     b.show(); // A reference of interface is pointing to objects of class B.
+     b.show();
 
-     A a = new B();
+     A a = new B();// A reference of interface is pointing to objects of class B.
      a.msg();
 
   // This statement will generate a compile-time error because

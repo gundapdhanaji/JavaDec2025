@@ -1,0 +1,44 @@
+Handling Date and Time in java :-
+=========================================================
+
+Until java 1.7 version the classes present in Java.util package to handle Date and Time(like Date,
+Calender,TimeZone, etc) are not up to the mark with respect to convenience and performance
+
+To overcome this problem in the Java 1.8 version oracle people introduced
+new date and time API belongs to java.time package
+
+This java 8 date API provides various classes and Enums in java.time package, using which
+we can represent Date and Time in our application efficiently
+
+The main important classes of this api is :
+
+LocalDate :- to represent the Date
+LocalTime :- to represent the Time
+LocalDateTime :- to present both
+
+there are some other helper classes and enum are defined inside the java.time package
+by using which we can manage data and time in java in efficient manner
+
+# Local Date Time all classes are immutable
+
+Class LocalDate
+
+java.lang.Object
+java.time.LocalDate
+
+public final class LocalDate
+extends Object
+implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable
+
+LocalDate is an immutable date-time object that represents a date, often viewed as year-month-day. Other
+date fields, such as day-of-year, day-of-week and week-of-year, can also be accessed.
+
+Formatting a date-time in user defined format
+---------------------------------------------
+
+--for that we need to use class "DateTimeFormatter" belongs from "java.time.format" package
+which has static factory method called "ofPattern(-)" which takes user defined pattern in
+the form of String and return the format in the form of DateTimeFormatter Object
+
+DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+

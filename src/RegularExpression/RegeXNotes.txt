@@ -1,0 +1,38 @@
+Regular Expression (regex)
+===========================
+
+--It is an expression which represents a group of String according to particular pattern
+
+We can write a Regular Expression to represent all valid mail Ids
+We can write a Regular Expression to represent all valid Indian mobile Numbers
+
+Application areas where we can use RE
+======================================
+
+-Form Validation
+-Pattern matching application(search) ctrl+f
+-Designs translater, like compiler, assembler etc
+
+To represent and use Regular Expressions in Java applications. Java has provided
+some classes and interfaces belongs to "java.util.regex" package
+
+--we mainly uses following 2 classes from the java.util.regex package to provide facility of RE in java:-
+
+1.java.util.regex.Pattern :- A Pattern object represents "compiled version of Regular Expression".
+2.java.util.regex.Matcher :- Matcher Obj we can use to match given pattern in the target String
+
+To create Regular Expression in the form of Pattern object we have to use the
+following method from java.util.regex.Pattern class
+
+public static Pattern compile(String regex);
+
+example :-
+Pattern p = Pattern.compile("ab");
+
+We can create a Matcher object by using the matcher() method of the Pattern class
+
+public Matcher matcher(String target);
+example :-
+Matcher m = p.matcher("abbbabbaba");
+
+to get details about the Matches identified in the Matcher object we have to use the following methods of the Matcher

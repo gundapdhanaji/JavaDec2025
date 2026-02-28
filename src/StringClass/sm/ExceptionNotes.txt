@@ -1,0 +1,64 @@
+Exception Handling
+========================================
+
+there are two types of error in java ?
+1.Syntax error :- improper environment and syntactical error.it results in compilation error
+
+2.logical error :- sometime jvm would unable to execute statements in the bytecode due to
+                   some logical error occur in our program
+
+
+--whenver a logical error occurs in our application. jvm will terminate the program automatically
+  and control comes out from the program unconditionally withou executing remaining statements.
+
+--normal termination or gracefully termination of our application :- whenever last line of the main method
+or any class will be executed successfully then we can conclude, our application terminated gracefully or normally
+
+for each logical error, there are some predefined classes in java, whose objects are created by the jvm, whenever
+it encounters that corresponding logical error. names of such classes found under the exception class in java api
+
+ex:
+java.lang.ArithmaticException
+java.lang.ArrayIndexOutOfBoundException
+java.lang.NullPointerException
+java.lang.ClassCastException
+java.lang.NumberFormatException
+java.io.IOException
+java.sql.SQLException
+
+--whenver jvm encounters a logical error, it creates an object of the corresponding predefined exception class, and
+put that object in our application. If we don't handle that object explicitly, Then this Object will reaches back
+to the jvm, then jvm will receive that object and terminate the program abnormally.
+
+To avoid the abnormal termination, We need to avoid that exception class object should not reach back to the jvm
+and we do so by Handling that Exception class Object
+
+We handle the exception class object by just assigning that object to the corresponding exception class variable
+
+We have 2 keywords try and catch to implements exception handling
+
+try keyword will recognize the exception class object created by the JVM and
+It gets hold on that object and transfer that object to the catch block
+
+--In catch block, we should be able to assign those objects to the appropriate class reference variable so that
+they will not reaches back to the jvm and therefore program will not terminated abnoramally
+
+# Some of the important point of exception handling:-
+1.The main objective of exception handling is normal/gracefully termination of program
+2.we can know in which part of the program the logical error has occurred
+3.we are not allowing the jvm to terminate the entire application, only the try block in which the logical error has
+occurred would be terminated.
+4.If no exception class object is created inside the try block, control will  never enters to catch block
+5.Once the control enters in the catch block, it executes the statement in the catch block and moves further
+It will not come to the try block again, because of which the catch block has executed
+6.every try block should be associated with atleast one catch block.
+
+
+Note : in a catch block, we not only handle the exception class object to the corresponding variable, in addition
+to that catch block provides an alternative way to define the logic whenver any exception occured inside try block
+
+
+
+
+
+
