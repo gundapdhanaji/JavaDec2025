@@ -1,0 +1,27 @@
+Features of Java Programming Language
+
+Simple
+Object-oriented
+Distributed
+Interpreted
+Secure
+Robust
+Architecture neutral
+Portable
+High performance
+Multithreaded
+Dynamic programming language
+
+What is Java?
+Java is a high-level, object-oriented, class-based, and platform-independent
+programming language designed to develop secure, robust, and portable applications.
+
+How does Java achieve platform independence?
+The Java compiler converts source code into bytecode. This bytecode runs on the Java Virtual
+Machine (JVM), which enables the program to execute on any operating system
+that has a compatible JVM installed.
+
+What are the three main components of Java?
+The three main components of Java are the JVM (Java Virtual Machine),
+JRE (Java Runtime Environment), and JDK (Java Development Kit).
+

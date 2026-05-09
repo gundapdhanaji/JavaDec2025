@@ -68,22 +68,25 @@ Collection
 Java 8
 
 Q.1 how many keywords are there in java ?
-    As of Java 21, there are 53 keywords, which are reserved words with predefined meanings, including 51 active keywords
-     and two unused reserved words (const and goto). They cannot be used as identifiers (variable or method names) and
-     are case-sensitive. Some sources indicate 50-52 active keywords depending on the version.
+    As of Java 21, there are 53 keywords, which are reserved words with predefined meanings, including
+    51 active keywords and two unused reserved words (const and goto). They cannot be used as identifiers
+    (variable or method names) and are case-sensitive. Some sources indicate 50-52 active keywords
+    depending on the version.
 
 Q2. What is Class in java ?
-    In Java, a class is a fundamental, user-defined blueprint or template used to create objects. It is a logical entity
-     that defines the structure and behavior (state and actions) that all objects of its type will share.
+    In Java, a class is a fundamental, user-defined blueprint or template used to create objects.
+    It is a logical entity that defines the structure and behavior (state and actions)
+    that all objects of its type will share.
 
 1. Class is Not a Real-World Entity:
 A class is an abstract concept and acts as a blueprint for creating objects. It represents the definition
  but not the physical existence of an entity.
-Example: A "Car" class defines properties like color, model, and speed but does not represent any specific car
-until instantiated.
+Example: A "Car" class defines properties like color, model, and speed but does not represent
+any specific car until instantiated.
 2. Class Does Not Occupy Memory:
 Unlike objects, classes themselves do not occupy memory until an object is created from the class.
-Example: Declaring a class does not allocate space in memory until you create an object using the new keyword.
+Example: Declaring a class does not allocate space in memory until you create an object using the
+new keyword.
 3. Class is a Grouping Mechanism:
 
 A class is a logical container that groups variables (data members) and methods (functions).
@@ -93,15 +96,18 @@ class Car {
     String color;
     int speed;
 }
+
 Methods: Functions that define the behavior or actions of the objects
 void drive() {
     System.out.println("The car is driving.");
 }
+
 Constructor: A special method used to initialize objects when they are created.
 Car(String color, int speed) {
     this.color = color;
     this.speed = speed;
 }
+
 Nested Class: A class within another class, useful for logical grouping or encapsulation.
 class Outer {
     class Inner {
@@ -110,6 +116,7 @@ class Outer {
         }
     }
 }
+
 Interface: A blueprint for a class to implement, containing abstract methods.
 interface Vehicle {
     void start();

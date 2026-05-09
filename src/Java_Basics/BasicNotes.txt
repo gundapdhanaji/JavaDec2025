@@ -2,7 +2,8 @@ Features of Java
 1. Simple - clean and syntax are easy to understand no pointers,headers,preprocessors
 2.Object Oriented -  easy to maintain
 3.WORA - Write Once Run Anywhere.
-    when we compile the java source code it generates byte code and this byte code can run on any platform (OS) like Linux, Mac, windows
+    when we compile the java source code it generates byte code and this byte code
+    can run on any platform (OS) like Linux, Mac, windows
 4.Security
 5.very good Memory Management System
 6.very good exception handling mechanism

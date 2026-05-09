@@ -1,0 +1,166 @@
+1.data :- variables
+2.logic :- functions / method
+
+Banking Application:
+----------------------------
+
+class Account {
+
+accountNo;
+ifsccode
+bankName
+accountHolderName
+int balance = 50000; //global variable //unrelated methods has access to the unrelated data
+
+
+deposit(int amount){
+ balance = balance + amount;
+ int x = 500; //local variable
+}
+
+withdraw(int amount){
+balance = balance - amount;
+}
+
+trasferAmount(){
+
+}
+
+checkBalance(){
+
+}
+
+calculateInterest(){
+
+}
+
+}
+
+class Authenticate {
+
+login(){
+
+}
+
+logout(){
+
+}
+
+changePassword(){
+
+}
+
+}
+}
+===============================================================
+
+Java Supports 8 Primitive Data Types under 4 Categories
+
+A.Integers :
+------------
+1.byte --  8  bit or 1 byte // 0  -128 to 127
+2.short -- 16 bit or 2 byte //0
+3.int  --  32 bit or 4 byte //0
+4.long --  64 bit or 8 byte //0
+
+B.Real numbers :
+--------------
+5.float --  32 bit or 4 byte // 0.0
+6.double -- 64 bit or 8 byte //0.0
+
+C.Character :
+-------------
+7.char -- 16 bit //" "
+
+D.Boolean value
+8.boolean -- 1 bit (true or false) //false
+
+Note: any number with decimal point will be considered as double, not float
+eg. 10.55 jvm internally considered type as double not float
+
+
+Typecasting
+===================
+the procedure of converting one data type into its equivalent another data type is known as typecasting
+1.implicit typecasting(upcasting/widening)
+--storing a smaller value in equivalent bigger container
+eg1.
+    byte b = 10;
+    int  x = b; //implicit typecasting
+    byte c = x; //give compile time error becoz x is int type of variable
+	//here we are not assigning variable not value tomorrow it will be bigger today is 10 tomorrow will be 10000
+System.out.println(x);
+    int x = 10;
+    float f = x; //implicit float is bigger than int
+
+    int y =(int) f;//explicit  convert float to int
+
+2.explicit typecasting(downcasting/narrowing)
+--storing a bigger value in equivalent smaller container
+
+int x = 10;
+byte b = (byte)x; //here we typecast int type to variable type
+
+Boolean f = true;
+int x = (int)f; //it gives error becoz not compatible type
+Note : we can not typecast any datatype to any other data type,
+we can typecast only compatible or equivalent types
+
+
+byte b = 10;
+byte c = 20;
+byte d = b+c; //compile time error becoz result type is int
+byte d = (byte)b+c; ct error here we only typecast b variable we need to typecast two variables
+byte d = byte(b+c)
+
+If we give type of b variable is long then result type long
+// result type = max(int, type1, type2,....);
+// max(int, byte, byte);
+
+byte to char conversion:
+-------------------------
+byte and char we can assign their values to each other, here implicitly conversion takes place
+but if we try to assign the variables of each other against them we need to typecast explicitly
+
+Arithmetic Flow:
+multiplication, division, reminder -- they have the same level of priority
+addition and substraction
+flow is from left to right
+
+Boolean Logical Operator
+---------------------------
+This operator can also be applied the boolean as well as integer value
+A    B   A&B     A|B     A^B
+T    T    T       T       F
+T    F    F       T       T
+F    T    F       T       T
+F    F    F       F       F
+
+
+for each primitive type corresponding wrapper class there
+Primitive Data types        Wrapper Classes
+byte                    :   java.lang.Byte
+short                   :   java.lang.Short
+int                     :   java.lang.Integer
+long                    :   java.lang.Long
+float                   :   java.lang.Float
+double                  :   java.lang.Double
+char                    :   java.lang.Character
+boolean                 :   java.lang.Boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

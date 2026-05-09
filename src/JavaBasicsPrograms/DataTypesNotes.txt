@@ -17,14 +17,17 @@ while narrowing is the manual conversion of a larger type to a smaller type,
 which carries a risk of data loss
 
 What is Type Casting?
-Type casting is the process of converting a variable from one data type to another. This happens when you assign a value
-of one data type to another type. Java supports two types of type casting: implicit (widening) casting and explicit (narrowing) casting.
+Type casting is the process of converting a variable from one data type to another.
+This happens when you assign a value of one data type to another type. Java supports
+two types of type casting: implicit (widening) casting and explicit (narrowing) casting.
 
-Implicit Casting (Widening — automatically): This type of casting occurs automatically when a smaller data type is promoted
-to a larger data type. Java handles this conversion seamlessly, ensuring no loss of data. For example,
+Implicit Casting (Widening — automatically): This type of casting occurs automatically
+when a smaller data type is promoted to a larger data type. Java handles this conversion
+seamlessly, ensuring no loss of data. For example,
 converting an int to a double is an implicit casting operation.
-Explicit Casting (Narrowing — manually): Explicit casting, on the other hand, involves manually converting a larger data type to
-a smaller data type. This process requires the use of parentheses and is done explicitly by the programmer.
+Explicit Casting (Narrowing — manually): Explicit casting, on the other hand, involves manually
+converting a larger data type to a smaller data type. This process requires the use of
+parentheses and is done explicitly by the programmer.
 For instance, casting a double to an int requires explicit casting.
 int x = 10;
 double y = x; // widening casting: int to double
