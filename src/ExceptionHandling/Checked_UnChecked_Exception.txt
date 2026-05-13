@@ -1,0 +1,42 @@
+Checked and Unchecked Exceptions in Java
+In this tutorial, we will learn checked and unchecked exceptions in Java with the help of example programs.
+We know that there are two types of exceptions in Java:
+first is predefined exceptions, and second user-defined exceptions.
+
+The predefined exceptions are those exceptions that are already defined by the java system. All the predefined
+exceptions are further divided into two groups:
+
+Checked Exceptions
+Unchecked Exceptions
+
+Checked Exceptions in Java
+Checked exceptions are those exceptions that are checked by the Java compiler itself at compilation time
+and are not under runtime exception class hierarchy. If a method throws a checked exception in a program,
+the method must either handle the exception or pass it to a caller method.
+
+We must handle checked exceptions either by using try and catch block or by using a throws clause in the
+method declaration. If not handles properly, it will give a compile-time error.
+
+Most people have confusion and say that checked exceptions occur at compile-time, that is wrong.
+All exceptions always occur at runtime only, but some exceptions are detected at compile-time
+and some other at runtime.
+
+The exceptions that are checked by Java compiler at compilation time are called checked exceptions
+in Java. All the exceptions except RuntimeException, Error, and their subclasses are checked exceptions.
+
+Note:
+
+Compile-time errors are not exceptions. They come under errors.
+In Java, only runtime errors come under exceptions.
+
+List of Checked Exceptions in Java
+A list of some important checked exceptions is given below:
+
+ClassNotFoundException
+InterruptedException
+InstantiationException
+IOException
+SQLException
+IllegalAccessException
+FileNotFoundException, etc
+

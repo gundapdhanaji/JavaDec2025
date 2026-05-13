@@ -6,12 +6,22 @@ import java.io.FileNotFoundException;
 
 public class FileReadingExample {
 
-    public static void main(String[] args) {
-        File file = new File("ExceptionHandlingNotes.txt");
-        try {
-            FileInputStream fis = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public static void main(String[] args) {
+//        File file = new File("test.txt");
+//        try {
+//            FileInputStream fis = new FileInputStream(file);
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+public static void main(String[] args) throws FileNotFoundException {
+    File file = new File("test.txt");
+    FileInputStream fis = new FileInputStream(file);
+
+    //    try {
+//        FileInputStream fis = new FileInputStream(file);
+//    } catch (FileNotFoundException e) {
+//        throw new RuntimeException(e);
+//    }
+}
 }

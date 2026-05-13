@@ -1,4 +1,4 @@
-package StringClass.sm;
+package ExceptionHandling.sm;
 
 public class StringExample {
     public static void main(String[] args) {
@@ -8,7 +8,10 @@ public class StringExample {
         String s2 = "Durga Soft";
 
         String s4 ="Durga";
-        String s5 ="Durga";
+        String s5 ="Durga1";
+        System.out.println("s4 string literal hashcode.. "+s4.hashCode());
+        System.out.println("s5 string literal hashcode.. "+s5.hashCode());
+
         System.out.println("equals method "+s4.equals(s5));
         System.out.println(s4.concat(s5));
 

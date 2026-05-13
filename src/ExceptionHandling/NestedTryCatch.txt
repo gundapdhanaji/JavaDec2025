@@ -1,0 +1,58 @@
+https://www.scientecheasy.com/2020/09/nested-try-in-java.html/#google_vignette
+Nested Try in Java | Nested Try Catch Block
+When a try block is defined within another try, it is called nested try block in Java. The try block which
+encloses another try block is called outer try block, and the enclosed try block is called inner try block.
+
+try // Outer try block
+{
+  statements;
+  statements;
+try // Inner try block
+{
+  statements;
+  statements;
+}
+catch(Exception1 e1) // Inner catch block
+{
+  statements;
+  statements;
+ }
+}
+catch(Exception2 e2) // Outer catch block
+{
+  statements;
+  statements;
+}
+
+Different Cases Associated with Nested Try Block in Java
+
+Case 1:
+
+If an exception occurs within the outer try block, the control of execution is transferred from
+the outer try block to outer catch block that will handle the exception thrown by outer try block.
+After handling the exception by catch block, the execution continues with the statement following
+the outer catch block. The inner try block and its corresponding catch blocks are skipped in this case.
+
+Case 2:
+
+If an exception does not occur inside the outer try block, the control of execution enters into
+the inner try block. When an exception occurs inside the inner try block, the catch block
+associated with this inner try block is searched for a proper match.
+
+If a match is found, then the execution of outer catch block is skipped and the execution continues
+with statements following outer catch block.
+
+If no match is found, the control of execution is transferred to the next outer try-catch block to
+handle the exception of inner try block. This process continues until and unless an appropriate match is found.
+
+If no match is found, then Java runtime system will handle the exception at runtime and
+the program terminates abnormally.
+
+Case 3:
+
+If both try blocks do not throw any exception, both catch blocks are skipped naturally and
+the execution continues with statements following the outer catch block.
+
+Case 5:
+
+Code after finally runs ONLY IF exception is handled

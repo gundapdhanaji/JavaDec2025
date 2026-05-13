@@ -4,12 +4,12 @@ Exception Handling
 there are two types of error in java ?
 1.Syntax error :- improper environment and syntactical error.it results in compilation error
 
-2.logical error :- sometime jvm would unable to execute statements in the bytecode due to
+2.logical error :- sometime jvm would be unable to execute statements in the bytecode due to
                    some logical error occur in our program
 
 
 --whenver a logical error occurs in our application. jvm will terminate the program automatically
-  and control comes out from the program unconditionally withou executing remaining statements.
+  and control comes out from the program unconditionally without executing remaining statements.
 
 --normal termination or gracefully termination of our application :- whenever last line of the main method
 or any class will be executed successfully then we can conclude, our application terminated gracefully or normally
@@ -33,29 +33,265 @@ to the jvm, then jvm will receive that object and terminate the program abnormal
 To avoid the abnormal termination, We need to avoid that exception class object should not reach back to the jvm
 and we do so by Handling that Exception class Object
 
-We handle the exception class object by just assigning that object to the corresponding exception class variable
+We handle the exception class object by just assigning that object to the corresponding exception class variable.
 
-We have 2 keywords try and catch to implements exception handling
+We have 2 keywords try and catch For implementing exception handling
 
-try keyword will recognize the exception class object created by the JVM and
+try keyword (block) will recognize the exception class object created by the JVM, and
 It gets hold on that object and transfer that object to the catch block
 
 --In catch block, we should be able to assign those objects to the appropriate class reference variable so that
-they will not reaches back to the jvm and therefore program will not terminated abnoramally
+they will not reach back to the jvm and therefore program will not be terminated abnoramally
 
 # Some of the important point of exception handling:-
 1.The main objective of exception handling is normal/gracefully termination of program
 2.we can know in which part of the program the logical error has occurred
-3.we are not allowing the jvm to terminate the entire application, only the try block in which the logical error has
-occurred would be terminated.
-4.If no exception class object is created inside the try block, control will  never enters to catch block
-5.Once the control enters in the catch block, it executes the statement in the catch block and moves further
+3.we are not allowing the jvm to terminate the entire application, only the try block
+in which the logical error has occurred would be terminated.
+4.If no exception class object is created inside the try block, control will  never enter to catch block
+5.Once the control enters in the catch block, it executes the statement in the catch block and moves further.
 It will not come to the try block again, because of which the catch block has executed
-6.every try block should be associated with atleast one catch block.
+6.every try block should be associated with at least one catch block.
 
 
-Note : in a catch block, we not only handle the exception class object to the corresponding variable, in addition
-to that catch block provides an alternative way to define the logic whenver any exception occured inside try block
+Note : in a catch block, we not only handle the exception class object to the corresponding variable,
+In addition to that catch block provides an alternative way to define the logic
+whenever any exception occurred inside try block
+
+                                                    Object
+                                                       |
+                                                    Throwable
+                                                       |
+                         ------------------------------------------------------------
+                         |                                                          |
+               Exception(checked exception)                                       Error
+                         |
+   ---------------------------------------------------------------
+   |                         |              |                     |
+Runtime Exception      SQL Exception    ClassNotFoundException   etc.
+       |
+  -------------------------------
+  |      |      |       |       |
+AIOBE   NPE    CCE     AE     NumForExcep.
+
+In java, we have all together 5 keywords in the concept of exception Handling
+1.try
+2.catch
+3.throw
+4.throws
+5.finally
+
+--Exception classes are categorized into 2 category;
+1.checked Exception (checked by java compiler)
+2.unchecked Exception (not checked by the java compiler)
+
+Note:whether exception is checked or unchecked, exception always occurs at
+runtime,it never occurs at compile time
+
+.java ---> java compiler -------> .class ------> jvm ------> execute the class
+
+responsibility of java compiler
+---------------------------------------------
+1.convert .java(source code) to the .class(bytecode)
+2.If inside the class if we don't put any constructor then provides default constructor inside our .class file
+3.It will scan our .java file and check any syntax error and generate compile time error
+4.for each and every statement which may generate an exception, compiler will check
+whether we are handling the corresponding exception class object or not.
+
+-- in the process of checking compiler will not bother even we don't handle object of some
+exception classes
+
+-- but there are some statements for which applying the concept of exception handling is
+mandatory at compile time itself.
+If we don't handle them then compiler will generate a compile time error
+
+the exception class object for which compiler force us to handle them
+at compile time is known as checked exception
+ex:
+ClassNotFoundException
+IOException
+SQLException
+
+and for those exception classes compiler will not force us(it ignores) at compile time
+to handle is known as unchecked exception
+ex:
+ArithMetic Exception
+NullPointer Exception
+ClassCastException
+ArrayIndexOutOfBoundException
+NumberFormatException
+
+Runtime Exception and its child classes considered as unchecked (runtime) exception
+--if some statement in our java code may generate these classes object, handling
+these classes object at compile time is optional
+
+Exception class and its child classes except RuntimeException class
+is known as Checked Exception.
+--If some statement in our java code may generate these classes object, handling
+these classes object at compile time is mandatory, otherwise compiler will generate
+compile time error.
+
+throw keyword
+===============
+-- with throw keyword we can generate the exception class object in our program explicitly
+public int getPension(int age, int salary){
+        int pension = 0;
+
+        if (age > 40 && age < 100)
+            pension = (age * salary)/100;
+        else {
+            ArithmeticException ae = new ArithmeticException("Invalid age");
+            throw ae;
+        //this exception is generated based on logical error due to our business logic
+        }
+        return pension;
+    }
+-- generally jvm will create the exception class object, whenever logical error occur in
+    our application. and put/throw that exception object inside our application.
+-- but sometimes, it is required that programmer need to create the exception class object
+    explicitly and throw that inside the application manually. whenever logical error
+    occurs due to the business logic violation.
+-- this business logic violation error related to logical error, is not a logical error to
+    the point of view of jvm.
+
+throws keyword
+================
+throws keyword is used along with method signature to announce the caller that the method might
+throw an exception class object at calling place.
+If we are throwing checked exception then compiler forcing you to handle it at compile time.
+rule No1.
+Inside method if we are throwing an checked exception then announcing a method signature is mandatory
+If we are throwing an unchecked exception then announcing that in a method signature is not mandatory
+
+Rule1:
+--If we are throwing any unchecked exception class object from a method then announcing
+that exception with method signature is optional. otherwise(if we throw any checked
+exception class object) then it is mandatory
+
+Rule2:
+--If a method throws any checked exception then caller have 2 choices at compile time
+    1.caller need to wrap the method call inside the try-catch block()
+    2.caller can delegate exception handling duty to its own caller by
+    using "throws" keyword(skipping the exception)
+
+Note : we only handle the exception using try-catch block, using "throws" keyword we just skip
+the exception handling duty and delegates it to the caller
+
+
+Note : whenever we want to make exception handling duty mandatory to the caller then throw
+checked exception class object otherwise (if we make exception handling duty to caller is optional)
+then throw unchecked exception
+
+User-defined Exception
+=======================
+
+--if we want we can create our own user-defined exception classes as well
+
+public class InvalidAgeException extends Exception{
+
+    public InvalidAgeException(String message){
+            super(message)
+    }
+
+    public InvalidAgeException(){
+
+    }
+
+}
+public class UsingCustomException {
+
+    public int getPension(int age, int salary) throws InvalidAgeExceptioin {
+        System.out.println("start of getPension......");
+
+        int pension=0;
+
+        if(age > 40 && age < 100)
+            pension = (age*salary)/100;
+        else{
+
+            InvalidAgeExceptioin iae = new InvalidAgeExceptioin("Invalid Age.........");
+            throw  iae;
+        }
+        return pension;
+    }
+
+   public static void main(String[] args) {
+        UsingCustomException customException = new UsingCustomException();
+       try {
+           int pen =customException.getPension(50,80000);
+           System.out.println("Pension is "+pen);
+       } catch (InvalidAgeExceptioin e) {
+           throw new RuntimeException(e);
+       }
+   }
+}
+-----------------------------------------------------------------------------------------
+Nested Try Catch
+====================
+public class NestedTryCatch {
+    public static void main(String[] args) {
+    System.out.println("Start of main....");
+
+    try {
+        System.out.println("Inside try 1");
+
+        System.out.println(100/0);
+
+        try{
+            System.out.println("Inside try 2");
+
+            A a1 = null;
+            a1.funA();
+            System.out.println("End of try 2");
+        }catch (NullPointerException npe){
+            System.out.println("catch of try 2....");
+        }
+        System.out.println("end of try1 ");
+    }catch (Exception e){
+        System.out.println("catch of try1");
+    }
+        System.out.println("End of Main....");
+    }
+}
+
+//throws with inheritance
+-----------------------------
+public class A {
+    int i = 10;
+    public A() throws InvalidAgeException{
+        System.out.println("Inside constructor of A");
+    }
+    public void funA(){
+        System.out.println("FunA of class A ");
+    }
+}
+
+public class Demo extends A{
+
+    public Demo() throws InvalidAgeException {
+        super();
+    }
+    public static void main(String[] args) {
+        System.out.println("start of main.....");
+
+        try {
+            Demo d1 = new Demo();
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("end of main...");
+    }
+}
+====================================================
+finally:
+-----
+-- irrespective of try and catch if we want to execute some code then we will use finally block
+-- it is block used with try and catch block
+
+
+
+
 
 
 

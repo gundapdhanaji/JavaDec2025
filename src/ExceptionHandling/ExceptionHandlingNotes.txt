@@ -3,9 +3,9 @@ https://www.tutorialspoint.com/java/java_custom_exception.htm
 
 Q.1 WHAT IS EXCEPTION  IN JAVA ?
 ====>
-     An exception is an unexpected event or error that occurs during a program's execution, disrupting its normal flow.
-     It represents a "special case" or error condition—such as dividing by zero or accessing missing files—that breaks
-     the standard rules of execution, which can be caught and handled to prevent crashes
+An exception is an unexpected event or error that occurs during a program's execution, disrupting
+its normal flow. It represents a "special case" or error condition—such as dividing by zero or accessing
+missing files—that breaks the standard rules of execution, which can be caught and handled to prevent crashes
 
 Q2. Why we get Exception in java ?
 ====>
@@ -104,7 +104,7 @@ Difference Between Error and Exception in Java
     Error	                                                        Exception
     An error cannot be handled at runtime.	                        An exception can be handled at runtime
 ------------------------------------------------------------------------------------------------------------------------
-    An error can occur both at compile time                         Although all the Exceptions occur at runtime. But
+    An error can occur both at compile time                         Although all the Exceptions occur at runtime. But,
     and during runtime.                                             checked Exceptions can be detected at compile time.
 -------------------------------------------------------------------------------------------------------------------------
     There are 3 types of Errors: Syntax Error,                      There are 2 types of Exceptions: Checked Exceptions
@@ -154,19 +154,19 @@ Difference Between Error and Exception in Java
         of high-volume, data-driven documents such as invoices, statements, and boarding passes
 
    Q3. Compile time or Checked exception
-   ==> when compiler forces developer to handle the exceptions at compile time (without handling those exceptions your
-        code will not compile ) so those exceptions are called Compile time or checked exception
+   ==> when compiler forces developer to handle the exceptions at compile time (without handling those
+   exceptions your code will not compile ) so those exceptions are called Compile time or checked exception
 
    Q4. What should go in try block => the code which might cause an exception should go in try block;
        What should go in catch block =>
 
-   finally block ==> whether exception occurs or not, code in finally block will always gets executed
+   finally block ==> whether exception occurs or not, code in finally block will always get executed
 
 
    Q.5 what is exception propagation in java
-        Exception propagation in Java is the mechanism by which an exception is passed up the method call stack from
-        the method where it occurred to its calling methods, until it is caught and handled by an appropriate try-catch block
-        or reaches the top of the stack and terminates the program.
+        Exception propagation in Java is the mechanism by which an exception is passed up the
+        method call stack from the method where it occurred to its calling methods,
+        until it is caught and handled by an appropriate try-catch block
 
 
 

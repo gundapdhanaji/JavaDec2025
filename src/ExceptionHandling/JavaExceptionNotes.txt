@@ -1,0 +1,14 @@
+what is Exception in Java ?
+=> unwanted event which occurs during execution of program which breaks normal flow of program
+
+
+why we get exceptions ?
+=>
+
+why should we handle them ?
+=> invalid user input
+=> invalid data
+=> network failure
+=> connection/server timeout
+=> out of memory error
+=> incorrect config

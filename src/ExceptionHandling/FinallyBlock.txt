@@ -1,0 +1,186 @@
+Use of Finally Block in Java
+Generally, finally block or clause is used for freeing up resources, cleaning up code,
+db closing connection, io stream, etc.
+Java finally block is used to prevent resource leak. While closing a file or recovering resources,
+the code is put inside the finally block to ensure that the resource is always recovered.
+Finally, clause is used for terminating threads.
+
+Case 1: Let’s take an example program where there is no exception in the try block.
+
+public class finallyBlockExample1 {
+public static void main(String[] args)
+{
+  int a = 20, b = 30;
+  try
+  {
+    int sum = a + b;
+    System.out.println("Sum: " +sum);
+  }
+  catch(Exception e)
+  {
+    System.out.println(e);
+  }
+
+ finally
+ {
+    System.out.println("finally block must be executed");
+ }
+ System.out.println("Hello Java");
+ }
+}
+Output:
+      Sum: 50
+      finally block must be executed
+      Hello Java
+In the above code, no exception has occurred inside try block. So, catch block will not be executed
+and the control will directly go to execute the finally block.
+
+Case 2: Let’s take another example program where an exception will occur inside try block, and
+it will be handled by catch block.
+
+public class finallyBlockExample2 {
+public static void main(String[] args)
+{
+ int a = 20, b = 0;
+ try
+ {
+    System.out.println("Value of a: " +a);
+    System.out.println("Value of b: " +b);
+    int div = a/b;
+    System.out.println("Division: " +div);
+ }
+ catch(ArithmeticException ae)
+ {
+    System.out.println(ae); // prints corresponding exception.
+ }
+
+ finally
+ {
+   System.out.println("Denominator cannot be zero");
+ }
+ System.out.println("Hello Java");
+ }
+}
+Output:
+       Value of a: 20
+       Value of b: 0
+       java.lang.ArithmeticException: / by zero
+       Denominator cannot be zero
+       Hello Java
+In the above example program, the thrown exception by try is handled in the catch block and an
+appropriate error message is displayed. After that, the code inside the finally block is executed by JVM.
+
+Case 3: Let’s take an example program where an exception will be raised, but it is not
+handled by the corresponding catch block.
+public class finallyBlockExample3 {
+public static void main(String[] args)
+{
+  int a = 20, b = 0;
+  try
+  {
+     System.out.println("Value of a: " +a);
+     System.out.println("Value of b: " +b);
+     int div = a/b;
+     System.out.println("Division: " +div);
+  }
+  catch(NullPointerException npe)
+  {
+    System.out.println(npe); // prints corresponding exception.
+  }
+
+  finally
+  {
+    System.out.println("Denominator cannot be zero");
+  }
+  System.out.println("Hello Java");
+ }
+}
+Output:
+       Value of a: 20
+       Value of b: 0
+       Denominator cannot be zero
+       Exception in thread "main" Denominator cannot be zero java.lang.ArithmeticException: / by zero
+       at finallyBlockExample.finallyBlockExample1.main(finallyBlockExample1.java:11)
+
+In the above code, an arithmetic exception has occurred inside try, but it has been not handled
+by catch block because the corresponding catch block is not matched with exception object.
+
+Therefore, JVM will hand over exception object to the default exception handler for abnormal termination of the program.
+
+But before handing over to the default exception handler, JVM will execute finally block. After
+the execution of finally block, JVM will not execute any given statements after finally block.
+
+Case 4: Let’s see an example program where an exception occurs in catch block only.
+In this case, what will be the control flow?
+public class finallyBlockExample4 {
+public static void main(String[] args)
+{
+  try
+  {
+    System.out.println("111");
+    System.out.println("222");
+  }
+  catch(Exception ae)
+  {
+    System.out.println(10/0);
+  }
+
+  finally
+  {
+     System.out.println("444");
+  }
+  System.out.println("555");
+ }
+}
+Output:
+       111
+       222
+       444
+       555
+
+Since an exception has occurred in the catch block, not inside try block, so catch block will
+not be executed and the control will directly go to execute finally block. This is because
+exception that occurred in the catch is not part of the try block
+
+
+Case 5: Suppose exceptions have raised in both try and catch block. In this case, what will be the control flow?
+public class finallyBlockExample5 {
+public static void main(String[] args) {
+try
+{
+  System.out.println("111");
+  System.out.println(20/0);
+  System.out.println("222");
+}
+catch(Exception ae)
+{
+  System.out.println(10/0);
+}
+finally
+{
+  System.out.println("444");
+}
+System.out.println("555");
+ }
+}
+
+
+Conditions where Finally Block does not execute
+There are the following conditions where finally block does not execute in Java. They are as follows:
+
+When System.exit() method is invoked before executing finally block.
+When an exception happens in the finally block.
+When the return statement is declared in the finally block, the control is transferred
+to the calling routine, and statements after return statement
+inside finally block will not be executed.
+
+
+
+
+
+
+
+
+
+
+

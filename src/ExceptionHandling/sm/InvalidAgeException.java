@@ -1,12 +1,12 @@
 package ExceptionHandling.sm;
 
-public class InvalidAgeExceptioin extends Exception{
+public class InvalidAgeException extends Exception{
 
-    public InvalidAgeExceptioin(String message){
+    public InvalidAgeException(String message){
         super(message);
     }
 
-    public InvalidAgeExceptioin(){
+    public InvalidAgeException(){
 
     }
 }
