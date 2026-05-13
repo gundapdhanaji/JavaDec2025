@@ -1,0 +1,8 @@
+HashSet is the best choice when we have insertion and deletion at middle
+
+Map in Java :
+
+Using Map also we can group multiple objects in the form of key-value pair.
+here each key-value pair is known as an entry.
+A Map is useful if we want to search, update or delete elements on the basis of key
+

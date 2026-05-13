@@ -1,0 +1,18 @@
+List :
+1.insertion order (sequence) will be maintained
+2.duplicates elements are allowed
+
+boolean hasNext();
+hasNext() checks whether there is another element available in the collection to iterate.
+
+Returns:
+true → if there is at least one more element remaining
+false → if no elements are remaining
+
+If frequent operation is insertion and deletion at middle then linked list is best choice
+
+
+methods of vector class are synchronized
+
+methods of array list are not synchronized
+performance of arrayList are faster than vector

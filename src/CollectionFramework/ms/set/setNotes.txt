@@ -1,0 +1,3 @@
+Set
+    It does not follow the index so insertion order is not maintained
+    duplicate elements are not allowed
