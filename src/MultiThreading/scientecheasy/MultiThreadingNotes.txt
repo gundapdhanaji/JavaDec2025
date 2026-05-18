@@ -1,0 +1,162 @@
+Thread class contains various methods that can be used to start, control, interrupt
+the execution of a thread, and for many other thread related activities in a program.
+
+Thread class extends Object class, and it implements Runnable interface.
+The declaration of thread class is as follows:
+
+public class Thread
+   extends Object
+      implements Runnable
+
+Thread Class Constructor
+The various constructors of thread class are defined in java.lang package that can
+be used to create an object of thread are as follows:
+
+1. Thread(): This is a basic and default constructor without parameters. It simply creates
+            an object of Thread class.
+
+2. Thread(String name): This form of constructor creates a new thread object with specified name to a thread.
+
+3. Thread(Runnable r): This form of constructor creates a thread object by passing a parameter
+                    r as a reference to an object of the class that implements Runnable interface.
+
+4. Thread(Runnable r, String name): This constructor creates a thread object by passing two arguments r and name.
+                   Here, variable r is a reference of an object of class that implements Runnable interface.
+
+Methods of Thread Class in Java
+Thread class provides various static methods that are as follows:
+
+currentThread()
+sleep()
+yield()
+activeCount()
+start()
+run()
+getName()
+setName()
+getPriority()
+setPriority()
+isAlive()
+join()
+stop()
+suspend()
+resume()
+isDaemon()
+
+Static Thread Methods
+Static thread methods in Java are methods that you can call without creating an instance
+of the Thread class. Since these methods are static in nature, you can call them directly
+using the Thread class, like Thread.sleep(1000);.
+
+1. currentThread():
+The currentThread() returns the reference of currently executing thread. Since this is a static method,
+so we can call it directly using the class name. The general syntax for currentThread() is as follows:
+
+public static Thread currentThread()
+
+2. sleep():
+The sleep() method puts currently executing thread to sleep for specified number of milliseconds.
+This method is used to pause the current thread for specified amount of time in milliseconds
+
+Since this method is static, so we can access it through Thread class name.
+The general syntax of this method is as follows
+
+public static void sleep(long milliseconds) throws InterruptedException
+
+public static void sleep(long milliseconds, int nanoseconds ) throw InterruptedException
+
+3. yield():
+
+The yield() method pauses the execution of current thread and allows another thread of equal or higher
+priority that are waiting to execute. Currently, executing thread give up the control of the CPU.
+The general form of yield() method is as follows:
+
+public static void yield()
+
+
+4. activeCount():
+
+This method returns the number of active threads. The basic form of this method is as:
+
+public static int activeCount()
+Since this method is static, so it can be accessed through Thread class name. It does not accept anything.
+
+Instance Thread Methods
+Instance thread methods in Java are those that require an instance of the Thread class
+to be created before calling them. The instance methods of Thread class are as follows:
+
+1. start():
+The start() method is used to start the execution of a thread by calling its run() method.
+JVM calls the run() method on the thread. The general syntax for start() method is as follows
+public void start();
+
+2. run():
+The run() method moves the thread into running state. It is executed only after the
+start() method has been executed. The general syntax of this method is as follows:
+public void run();
+
+3. getName():
+This method returns the name of the thread. The return type of this method is String.
+The general form of this method is:
+public final String getName()
+
+4. setName():
+The setName() method is used to set the name of a thread. It takes an argument of type String.
+It returns nothing. The basic form of this method is as:
+public final void setName(String name)
+
+5. getPriority():
+
+The getPriority() method returns the priority of a thread. It returns priority in the form of an integer
+value ranging from 1 to 10. The maximum priority is 10, the minimum priority is 1, and normal priority is 5.
+The general syntax to define getPriority() method is:
+public final int getPriority() // Return type is an integer.
+
+6. setPriority():
+This method is used to set the priority of a thread. It accepts an integer value as an argument.
+The general syntax is given below:
+public final void setPriority(int newPriority)
+
+7. isAlive():
+This method is used to check the thread is alive or not. It returns a boolean value (true or false)
+that indicates thread is running or not. The isAlive() method is final and native.
+The general syntax for isAlive() method is as follows:
+public final native boolean isAlive()
+
+8. join():
+The join() method is used to make a thread wait for another thread to terminate its process. The general syntax is
+public final void join() throw InterruptedException
+This method throws InterruptedException and must be used within a try-catch block.
+
+9. stop():
+This method is used to stop the thread. The general form for this method is as follows:
+public final void stop()
+This method neither accepts anything nor returns anything.
+
+10. suspend():
+The suspend() method is used to suspend or pause a thread. The general form of suspend() method is given below:
+public final void suspend()
+
+11. resume():
+This method is used to resume the suspended thread. It neither accepts anything nor returns anything.
+The general form of the resume() method is as:
+public final void resume()
+
+12. isDaemon():
+This method is used to check the thread is daemon thread or not. The basic syntax is as:
+public final boolean isDaemon()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

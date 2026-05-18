@@ -1,0 +1,53 @@
+Synchronization concept:
+>Initially synchronization concept is implemented by using lock concept.
+>Every object in a java has a unique lock. most of the time the lock is unlocked.
+>when an object has one or more synchronized methods, a thread can enter into a synchronized
+method or synchronized block only when if that thread have the lock of that object.
+>The locks are not per method basis, instead they are per object basis.
+>The thread won't release the lock until it completes the synchronized methods, so while that
+thread is holding the lock of that object. once a synchronized method execution completed
+then thread releases the lock automatically.
+>Until the lock is released(completion of synchronized methods) no other threads can enter
+any of the synchronized methods or blocks of that object.
+>So if an object has synchronized methods or blocks, a thread can enter any of the synchronized
+methods or blocks only if the lock of that object is available.
+>Acquiring and releasing the lock internally taken care by JVM, programmer are not responsible
+for this activity.
+
+Note: while one thread is executing any one synchronized method on the given object
+then the remaining threads are not allowed to execute any other synchronized method
+simultaneously. but remaining threads are allowed to execute any non-synchronized
+method simultaneously.
+Example
+ class A{
+
+    synch funA(){}
+
+    synch funB(){}
+
+    funC(){}
+ }
+ Here if one thread try to execute funA on A class object then it needs the lock of that object,
+ once it acquires the lock it starts the execution of that method funA, while executing funA by
+ one thread, other threads are not allowed to execute funA and even funB() also, but other threads
+ can executes funC() simultaneously.
+
+ //every object ----> unique lock -----> object level lock -- non-static synchronized
+ //every class -----> unique lock -----> class level lock -- static methods synchronized
+
+
+Class Level lock:
+In our previous Common class example
+If there are two threads try to operate on "two different object" of Common.java class, then we will
+get the irregular output even though fun1() is synchronized, because both threads operate on two
+different objects, and they are holding the locks of two different objects
+        Common c = new Common();
+        Common c2 = new Common();
+
+        //sharing two diff object to two thread
+        ThreadD td = new ThreadD(c,"Ram");
+        ThreadD td2 = new ThreadD(c2,"Shyam");
+
+        td.start();
+        td2.start()
+

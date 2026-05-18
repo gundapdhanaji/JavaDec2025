@@ -1,0 +1,255 @@
+class Test{
+
+fun1(){
+-----
+-----
+-----
+}
+
+fun2(){
+-----
+-----
+-----
+}
+
+fun3(){
+-----
+-----
+-----
+}
+
+psvm(){
+Test t = new Test();
+t.fun1();
+t.fun2();
+t.fun3();
+}
+}
+normally, if the class is compiled and jvm executes the program, then the order of execution
+that first fun1() is called and after complete execution of fun1() control comebacks to the main
+and then fun2() is called and so on...
+-- now let us assume that fun1() has some statement which involves data transfer. We know
+that data transfer is not a job of the processor, it is a duty of a separate individual circuit
+Direct Access Memory(DMA) which functions under the control of the processor
+
+-- since fun1() has data transfer statements, processor assigns that job to DMA,
+during this time the processor(CPU) should remain idle
+
+-- this made s/w developers to think that, efficiency of the processor would be increased if
+processor is made to do some other useful work during this idle state.
+but useful work is nothing but, executing other functions/methods present in the program
+
+-- this need lead to the concept of multitasking.
+-- Remember that processor is also an electric circuit and at any instance of time, it can
+execute only one statement. it can not execute multiple statement simultaneously
+
+multiTasking :- It is the concept of executing multiple tasks/functionality simultaneously.(functionality
+may be from same domain (same application) or from diff domain(diff applications).)
+
+If we apply multiTasking then a part of the one function get executed then control switches to
+the another function now here also some part of second function get executed then control switches
+to the third function. Then again control comes back to the function1 now it continues function1
+from where it had stopped earlier. (switching between one functionality to another functionality
+in nanosecond)now when we see the output we feel that three fun executing simultaneously
+
+--- thus, concept of multiTasking comes into existence to avoid the idle state of cpu
+
+--- in multiTasking, a part of a functionality is executed one at a time
+and In that part how many statement will be executed decided by scheduling.
+
+Scheduling : It is the process in which a specific time period is allocated to a function
+where the control remains in that particular function for that specific time period.
+once time period lapsed control switches another fun with another time slice and so on.
+
+Scheduling is supervised by the Scheduler (either OS or ThreadScheduler)
+
+--Thread Scheduler in Java is the part of JVM that decides which thread should run.
+The time slice allocated will be in nanoseconds
+thus by the time our eye recognize the execution of one part control switches to another part
+of the program
+
+Advantages of MultiTasking
+1.It is invented to avoid Idle state of the CPU
+2.make the function gets executed independently.
+
+1.process based multi tasking
+2.thread based multi tasking
+
+example : There are two process in process based multitasking
+suppose we have Two different application running in two different memory domain
+1. A - Application
+2. B - Application
+If we are applying multiTasking then some Part of the statements are executing A-Appln domain
+and control will switch back to B-Appln domain
+e.g we can open notepad, vlc player, vs code, intellij ide, file explorer and so on
+Here Scheduling done by OS Scheduler
+
+Thread Based MultiTasking ==> Thread Scheduler will perform scheduling.
+Only one application there and That application done different,different functionality done simultaneously.
+In this same function and that different,different methods call simultaneously
+
+-- java supports Thread Based MutiTasking
+
+Process Based MultiTasking
+--------------------------
+concept of executing more than one program simultaneously which are present in different location
+of ram is known as process based multiTasking.
+here processor has to maintained address of both the program since control has to shift from
+one part of ram to another. It increases overhead on processor.
+
+-- here OS will perform the scheduling.
+
+ThreadBased Multitasking
+-------------------------
+
+concept of executing more than one function simultaneously belonging to the same memory domain
+is known as ThreadBased multiTasking
+
+-- here thread-scheduler will do the scheduling
+
+MultiThreading in java
+MultiThreading is a programming concept in which the application can create a small unit of tasks to
+execute in parallel.If you are working on computer, it runs multiple applications and allocates
+processing power to them.A simple program runs in sequence and the code statements execute one by one.
+This is a single-threaded application,But if the programming language supports creating multiple
+threads and passes them to the operating system to run in parallel, it's called multithreading.
+Multithreading in java is a process of executing multiple threads simultaneously.
+A thread is a lightweight sub-process, the smallest unit of processing. Multiprocessing
+and multithreading both are used to achieve multitasking.
+
+However, we use multithreading than multiprocessing because threads use a shared memory area.
+They don't allocate separate memory areas so saves memory and context-switching between the
+threads takes less time than process.
+
+Advantages of Java MultiThreading
+1.It doesn't block the user because threads are independent, and you can perform multiple operations at the same time
+2.You can perform many operations together, so it saves time.
+3.Threads are independent, so it doesn't affect other threads if an exception occurs in a single thread.
+
+Some Application areas to apply MultiThreading
+> To develop multimedia graphics.
+> To develop animations.
+> To develop video games.
+> To develop Web Servers.
+
+MultiTasking.
+MultiTasking is the process of executing multiple tasks simultaneously. We use multiTasking to
+utilize the CPU. MultiTasking can be achieved in two ways:
+> Process-based MultiTasking (Multiprocessing)
+> Thread-based MultiTasking (Multithreading)
+
+Process-based MultiTasking (Multiprocessing)
+> Each process has an address in memory. In other words, each process allocates a separate memory area.
+> A process is heavyweight
+> The cost of communication between process is high
+> Switching from one process to another require some time for saving and loading registers,
+  memory maps, updating lists etc.
+
+
+  Thread-based MultiTasking (Multithreading)
+  > Thread shares same address space(a thread is a part of process)
+  > A thread is lightweight
+  > The cost of communication between the thread is low
+
+  Note : At least one process is required for each thread
+
+  Thread in java
+  An application when it is under execution is called a process.
+  A thread is a part or sub-process of an application.
+  A thread is lightweight sub-process, the smallest unit of processing. It is a
+  separate path of execution.
+  A thread is separate flow of execution that execute some functionality of a program
+  with the other part of the program simultaneously.
+
+ Note: In Java, every program/application has a default flow of execution, a default
+ thread, it is called the main thread. if we can another flow of execution(another thread)
+ along with the main thread simultaneously then it is called a multithreaded appln or program
+
+ Implementing thread in Java.
+ Implementing thread in Java is two-step process:
+ 1.first of all, we have to define a functionality that can be executed as a thread
+ along with the main thread
+ 2.Start that functionality as a thread.
+
+ Thread(C) class and Runnable(I) Interface are the two structures using which we implement
+ thread based multiTasking in java.
+
+The signature of a function using which we implement a thread is defined in an interface
+by the name Runnable
+This runnable interface belongs to java.lang package. it has only one abstract method
+public void run();
+
+    Inside this run() method we need to define the functionality, that we want to execute
+    as a thread along with the main thread. after providing the body we need to execute
+    this functionality as a thread (i.e simultaneously with the other part of the program.)
+
+    There is a class by the name Thread present in java.lang package, which has a method
+    called start(). this start() method is used to execute a given functionality defined
+    inside the run() method of Runnable Interface as a separate thread.
+
+    This start() method of the Thread class recognize the run method() of the runnable
+    interface and then the run() method is executed as a separate individual thread.
+
+    Note : Internally the Thread class implements the Runnable Interface and
+    override run() method with empty implementation
+
+    package MultiThreading;
+
+    public class UsingThreadClass extends Thread {
+
+        @Override
+        public void run(){
+            System.out.println("run method start.....");
+            for (int i=0; i<15; i++){
+                System.out.println("inside run method "+i);
+            }
+            System.out.println("end of run() method");
+        }
+
+        public static void main(String[] args) {
+            // ----- here one thread (main)
+            UsingThreadClass threadClass = new UsingThreadClass();
+    //        threadClass.run();//it will be called as a normal method
+              threadClass.start();
+
+            for (int i=25; i<50; i++){
+                System.out.println("inside main method "+i);
+            }
+
+            System.out.println("end of main() method...");
+        }
+    }
+
+Here functionality of the start() method is to pick the run() method present
+in the object on which start() method is called and to handover this run()
+method to the thread-scheduler for the Scheduling.
+Control will be in the main() method and other statements of main() will be executed
+simultaneously along with run() method.
+Since both the threads are getting executed simultaneously, the start/end
+execution of thread completely depends on the time slice allocated for each
+method thread.
+Because of scheduling we can't guess the output of above application.
+
+Responsibility of start() method of Thread class:
+The start() method present in the Thread class is responsible to perform all
+the mandatory activity which are required for our thread. (like registering our thread
+with the Thread-scheduler,performing all low level task to start a separate flow of
+execution and then calling the run() method).
+hence without executing thread class start() method there is no chance of starting new
+thread in java
+After starting a thread we are not allowed to restart the same thread once again
+otherwise we will get a runtime exception called IllegalThreadStateException
+
+
+
+
+
+
+
+
+
+
+
+
+
+
