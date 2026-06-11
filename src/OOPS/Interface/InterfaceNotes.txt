@@ -1,7 +1,7 @@
 relationship between interface and class
-1) one class extends one class
-2) one class implements multiple interfaces
-3) one interface extends multiple interfaces
+1) one class extends one class.
+2) one class implements multiple interfaces.
+3) one interface extends multiple interfaces.
 4) If one abstract class implements 1 or more interfaces,
     then it's not mandatory for that abstract child class to provide method implementation of
     abstract methods of interfaces.
@@ -16,26 +16,26 @@ relationship between interface and class
 4) interface keyword used for defining interface
 
 Rules of Interface in Java
-Here are some key points for defining an interface in Java that must be kept in mind. The rules are as follows:
-
-An interface cannot be instantiated directly. However, you can create a reference to an interface type that
-points to an object of a class implementing it.
-An interface may not be declared with final keyword because it is meant to be implemented by other classes.
-It cannot have instance variables. If you declare a variable in an interface, it must be initialized at the
-time of declaration.
-A class that implements an interface must provide its own implementations of all the methods
+Here are some key points for defining an interface in Java that must be kept in mind.
+The rules are as follows:
+1.An interface cannot be instantiated directly. However, you can create a reference to an
+interface type that points to an object of a class implementing it.
+2.An interface may not be declared with final keyword because it is meant to be implemented by other classes.
+3.It cannot have instance variables. If you declare a variable in an interface, it must
+be initialized at the time of declaration.
+4.A class that implements an interface must provide its own implementations of all the methods
 defined in the interface.
-You cannot reduce the visibility of an interface method while overriding. That is, when you implement
+5.You cannot reduce the visibility of an interface method while overriding. That is, when you implement
 an interface method, it must be declared as public.
-An interface can also be declared with an empty body (i.e. without any members). For example, java.util
+6.An interface can also be declared with an empty body (i.e. without any members). For example, java.util
 package defines EventListener interface without a body.
-An interface can be declared within another interface or class. Such interfaces are called
+7.An interface can be declared within another interface or class. Such interfaces are called
 nested interfaces in Java.
-A top-level interface can be public or default with the abstract modifier in its definition. Therefore,
+8.A top-level interface can be public or default with the abstract modifier in its definition. Therefore,
 an interface declared with private, protected, or final will generate a compile-time error.
-All non-default methods defined in an interface are abstract and public by default. Therefore, a method
+9.All non-default methods defined in an interface are abstract and public by default. Therefore, a method
 defined with private, protected, or final in an interface will generate compile-time error.
-If you add any new method in interface, all concrete classes which implement that interface must provide
+10.If you add any new method in interface, all concrete classes which implement that interface must provide
 implementations for newly added method because all methods in interface are by default abstract.
 
 Key Points about Implementing Interface:

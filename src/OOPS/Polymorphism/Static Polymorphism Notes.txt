@@ -56,7 +56,7 @@ Invocation             It resolved at compile-time.         It resolved at runti
                                                             method dispatch.
 
 
-Inheritance             Required                            Not required.Required (through subclassing
+Inheritance             Not required.                       Required (through subclassing
                                                             or interface implementation).
 Binding             It uses static binding.                 It uses dynamic binding.
 Early and Late      It is also known as early binding.    It is also known as late binding.
@@ -64,13 +64,13 @@ Binding
 
 Signature Matching  Method signatures must be different.    Method signatures must be identical.
 
-Static Method       Static method can be overloaded.        Static method cannot be overridden.
+Static Method.      Static method can be overloaded.        Static method cannot be overridden.
 
 Final and Public    It is applicable to both                It is not applicable to private and
-Method              private and final methods               final methods.
+Method.              private and final methods.             final methods.
 
-Error               If any error occurs, can be             If any error occurs, can be caught at
-                    caught at compile-time.                 run-time.
+Error.               If any error occurs, can be,            If any error occurs, can be, caught at
+                     caught at compile-time.                 run-time.
 
 Java Access Modifiers with Method Overriding
 If you are overriding any method, overridden method (i.e. declared in subclass)
@@ -95,9 +95,9 @@ Thus, in order to fix the issue, either the class Simple method's access modifie
 as protected or public-should be as liberal as protected, or the class A method should
 have a less permissive access modifier-such as default or public.
 
-Covariant Return Type in Java
+Covariant Return Type in Java.
 
-The covariant return type in Java allows the return type of an overridden method to be a
+The covariant return type in Java allows the return type of overridden method to be a
 subtype of the return type defined in the superclass. In other words, we can say the
 covariant return type specifies that the return type may vary in the same direction
 as the subclass.
@@ -109,6 +109,7 @@ class B1 extends A{
 @Override
 B1 get(){return this;}
 void message(){System.out.println("Welcome to the covariant return type");}
+
 public static void main(String args[]){
 new B1().get().message();
 }

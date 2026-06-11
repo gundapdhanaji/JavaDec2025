@@ -15,7 +15,7 @@ of arguments if you write the method such as a(int,int) for two parameters, and
 b(int,int,int) for three parameters then it may be difficult for you as well as
 other programmers to understand the behavior of the method because its name differs
 
-Different Approaches of Method Overloading
+Different Approaches of Method Overloading.
 Method overloading in Java can be achieved in the following two ways:
 
 By Changing the Number of Arguments:
@@ -87,12 +87,12 @@ public class Main {
     }
 }
 
-Return Type Limitation in Method Overloading
+Return Type Limitation in Method Overloading.
 Method overloading in Java is based on the method signature, which includes the method
 name and parameter list. The return type alone is not sufficient to distinguish between
 overloaded methods because Java does not consider the return type when resolving method
 calls. If two methods have the same name and parameter list but different return types,
-the compiler cannot determine which method to call based solely on the return type
+the compiler cannot determine which method to call based solely on the return type.
 
 Method Overloading and Type Promotion
 One type is promoted to another implicitly if no matching datatype is found.

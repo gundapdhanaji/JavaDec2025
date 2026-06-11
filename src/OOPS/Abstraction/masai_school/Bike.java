@@ -1,4 +1,5 @@
 package OOPS.Abstraction.masai_school;
 
-public class Bike {
+public abstract class Bike {
+    abstract void run();
 }

@@ -1,4 +1,7 @@
 package OOPS.Abstraction;
 
-public class AbstractionRule {
+public abstract class AbstractionRule {
+    public  static void show(){
+        System.out.println("Concrete method in abstract class");
+    }
 }
